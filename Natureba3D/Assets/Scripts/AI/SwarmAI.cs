@@ -17,6 +17,8 @@ public class SwarmAI : AnimalAIBase
                 agent.ResetPath();
             }
         }
+        else if (target == null)
+            Destroy(gameObject, 1f);
     }
 
     protected override void OnChasingTarget()

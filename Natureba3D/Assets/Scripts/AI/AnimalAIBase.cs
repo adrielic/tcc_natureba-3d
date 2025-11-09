@@ -26,9 +26,12 @@ public abstract class AnimalAIBase : MonoBehaviour
     protected Transform target;
     protected bool baitTaken = false;
 
+    protected Animator anim;
+
     protected virtual void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        anim = GetComponent<Animator>();
     }
 
     protected virtual void Update()
@@ -95,13 +98,18 @@ public abstract class AnimalAIBase : MonoBehaviour
         target = null;
     }
 
-    protected virtual void OnChasingTarget() { }
+    protected virtual void OnChasingTarget()
+    {
+        Debug.Log($"{gameObject.name} is chasing you.");
+        anim.SetTrigger("DetectedPlayer");
+    }
 
     public void TakeBait()
     {
         baitTaken = true;
         agent.ResetPath();
         target = null;
+        anim.SetTrigger("DetectedBait");
     }
 
     protected void CheckInteractions()

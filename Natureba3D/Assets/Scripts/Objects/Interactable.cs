@@ -32,6 +32,11 @@ public class Interactable : MonoBehaviour
             if (TryGetComponent<FishAI>(out var fishAI))
                 fishAI.enabled = false;
         }
+
+        if (this is CarryableOnly && GetComponent<CarryableOnly>().type == CarryableOnly.CarryableType.Beehive)
+        {
+            GameObject swarm = Instantiate(Resources.Load("Prefabs/Swarm"), transform.position, transform.rotation) as GameObject;
+        }
     }
 
     public virtual void OnDrop(Vector3 forward)

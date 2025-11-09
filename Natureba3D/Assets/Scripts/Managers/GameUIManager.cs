@@ -49,12 +49,12 @@ public class GameUIManager : MonoBehaviour
                 waterTxt.text = "Água: " + GameManager.Instance.waterCount + "/" + GameManager.Instance.waterNeeded;
                 break;
             case 'h':
-                healthTxt.text = "Saúde: " + GameManager.Instance.healthCount + "/" + GameManager.Instance.healthNeeded;
+                healthTxt.text = "Medicina: " + GameManager.Instance.healthCount + "/" + GameManager.Instance.healthNeeded;
                 break;
             case 'n':
                 foodTxt.text = "Comida: " + GameManager.Instance.foodCount + "/3";
                 waterTxt.text = "Água: " + GameManager.Instance.waterCount + "/1";
-                healthTxt.text = "Saúde: " + GameManager.Instance.healthCount + "/1";
+                healthTxt.text = "Medicina: " + GameManager.Instance.healthCount + "/1";
                 break;
         }
     }

@@ -1,13 +1,13 @@
 using UnityEngine;
 
-public class WolfAI : AnimalAIBase
+public class CougarAI : AnimalAIBase
 {
     // Só herda o comportamento base
 
     protected override void OnChasingTarget()
     {
         base.OnChasingTarget();
-        agent.speed = 8;
+        agent.speed = 15;
         agent.angularSpeed = 200;
         agent.acceleration = 50;
     }
