@@ -1456,7 +1456,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Vers\xE3o Prot\xF3tipo 0.5.0\n\n- Teclas WASD: Movimento do personagem\n-
+  m_text: "Vers\xE3o Prot\xF3tipo 0.5.1\n\n- Teclas WASD: Movimento do personagem\n-
     Mouse: Movimento da c\xE2mera\n- Tecla E: Pegar\n- Tecla Q: Soltar\n- Bot\xE3o
     Esquerdo do Mouse: Usa o item da m\xE3o no item a frente\n- Bot\xE3o Direito
     do Mouse: Consome o item da m\xE3o\n\nObs.: Algumas funcionalidades e caracter\xEDsticas
