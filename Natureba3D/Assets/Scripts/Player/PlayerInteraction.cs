@@ -1,3 +1,4 @@
+using UnityEditor.Search;
 using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
@@ -24,7 +25,10 @@ public class PlayerInteraction : MonoBehaviour
         // Pegar
         if (Input.GetButtonDown("Pick") && target != null && target.isPickable)
         {
-            GrabItem(target);
+            if (itemInHands == null)
+                GrabItem(target);
+            else
+                StartCoroutine(GameUIManager.Instance.ChangeFeedbackText("Você precisa estar de mãos vazias para pegar este item."));
         }
 
         // Soltar

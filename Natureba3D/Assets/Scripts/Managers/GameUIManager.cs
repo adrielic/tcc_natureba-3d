@@ -5,7 +5,7 @@ using TMPro;
 
 public class GameUIManager : MonoBehaviour
 {
-    public TMP_Text interactionTxt, feedbackTxt, foodTxt, waterTxt, healthTxt;
+    public TMP_Text interactionTxt, feedbackTxt, foodTxt, waterTxt, medicineTxt;
 
     public static GameUIManager Instance { get; private set; }
 
@@ -48,13 +48,13 @@ public class GameUIManager : MonoBehaviour
             case 'w':
                 waterTxt.text = "Água: " + GameManager.Instance.waterCount + "/" + GameManager.Instance.waterNeeded;
                 break;
-            case 'h':
-                healthTxt.text = "Medicina: " + GameManager.Instance.healthCount + "/" + GameManager.Instance.healthNeeded;
+            case 'm':
+                medicineTxt.text = "Medicina: " + GameManager.Instance.medicineCount + "/" + GameManager.Instance.medicineNeeded;
                 break;
             case 'n':
-                foodTxt.text = "Comida: " + GameManager.Instance.foodCount + "/3";
-                waterTxt.text = "Água: " + GameManager.Instance.waterCount + "/1";
-                healthTxt.text = "Medicina: " + GameManager.Instance.healthCount + "/1";
+                foodTxt.text = "Comida: " + GameManager.Instance.foodCount + "/" + GameManager.Instance.foodNeeded;
+                waterTxt.text = "Água: " + GameManager.Instance.waterCount + "/" + GameManager.Instance.waterNeeded;
+                medicineTxt.text = "Medicina: " + GameManager.Instance.medicineCount + "/" + GameManager.Instance.medicineNeeded;
                 break;
         }
     }

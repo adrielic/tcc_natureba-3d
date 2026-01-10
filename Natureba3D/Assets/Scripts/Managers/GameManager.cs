@@ -4,8 +4,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public bool objectiveWasCompleted;
-    public int foodNeeded, waterNeeded, healthNeeded;
-    [HideInInspector] public int foodCount = 0, waterCount = 0, healthCount = 0;
+    public int foodNeeded, waterNeeded, medicineNeeded;
+    [HideInInspector] public int foodCount = 0, waterCount = 0, medicineCount = 0;
 
     public static GameManager Instance { get; private set; }
 
@@ -39,12 +39,12 @@ public class GameManager : MonoBehaviour
             case 'w':
                 waterCount++;
                 break;
-            case 'h':
-                healthCount++;
+            case 'm':
+                medicineCount++;
                 break;
         }
 
-        if (foodCount == foodNeeded && waterCount == waterNeeded && healthCount == healthNeeded)
+        if (foodCount == foodNeeded && waterCount == waterNeeded && medicineCount == medicineNeeded)
             objectiveWasCompleted = true;
     }
 }
