@@ -16,6 +16,7 @@ public class ConsumableFood : Consumable
         else
         {
             StartCoroutine(GameUIManager.Instance.ChangeFeedbackText("Você morreu."));
+            GameManager.Instance.GameOver("Intoxication_Fish");
         }
     }
 }

@@ -3,14 +3,10 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuScreen : MonoBehaviour
 {
-    void Start()
-    {
-        GameData.levelIndex = PlayerPrefs.GetInt("currentLevelIndex", 1);
-    }
-
     public void Play()
     {
-        SceneManager.LoadScene(GameData.levelIndex);
+        //SceneLoader.Instance.LoadScene(GameData.Load());
+        SceneManager.LoadScene(GameData.Load());
     }
 
     public void Quit()

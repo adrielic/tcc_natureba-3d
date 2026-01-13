@@ -16,15 +16,18 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        Move();
-
-        if (Input.GetButton("Jump") && IsGrounded())
+        if (!GameManager.Instance.isGameOver)
         {
-            Jump();
-        }
+            Move();
 
-        velocity.y += gravity * Time.deltaTime;
-        characterController.Move(velocity * Time.deltaTime);
+            if (Input.GetButton("Jump") && IsGrounded())
+            {
+                Jump();
+            }
+
+            velocity.y += gravity * Time.deltaTime;
+            characterController.Move(velocity * Time.deltaTime);
+        }
 
         if (IsGrounded() && velocity.y < 0)
         {
@@ -50,5 +53,14 @@ public class PlayerMovement : MonoBehaviour
     bool IsGrounded()
     {
         return Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+    }
+
+    void OnDrawGizmos()
+    {
+        if (groundCheck == null)
+            return;
+
+        Gizmos.color = IsGrounded() ? Color.green : Color.red;
+        Gizmos.DrawWireSphere(groundCheck.position, groundDistance);
     }
 }

@@ -1,11 +1,11 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 public class GameUIManager : MonoBehaviour
 {
-    public TMP_Text interactionTxt, feedbackTxt, foodTxt, waterTxt, medicineTxt;
+    public GameObject hud, deathScreen;
+    public TMP_Text interactionTxt, feedbackTxt, foodTxt, waterTxt, medicineTxt, deathMessageTxt;
 
     public static GameUIManager Instance { get; private set; }
 
@@ -57,5 +57,31 @@ public class GameUIManager : MonoBehaviour
                 medicineTxt.text = "Medicina: " + GameManager.Instance.medicineCount + "/" + GameManager.Instance.medicineNeeded;
                 break;
         }
+    }
+
+    public void DeactivateHUD()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        hud.SetActive(false);
+    }
+
+    public void ActivateHUD()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        hud.SetActive(true);
+    }
+
+    public void UpdateDeathScreen(string causeOfDeath, string newText)
+    {
+        DeactivateHUD();
+        deathScreen.SetActive(true);
+
+        deathMessageTxt.text = newText;
+    }
+
+    public void RestartButton()
+    {
+        SceneLoader.Instance.LoadScene(GameData.Load());
     }
 }

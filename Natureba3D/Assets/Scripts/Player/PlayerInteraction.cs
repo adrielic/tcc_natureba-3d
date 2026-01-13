@@ -12,62 +12,65 @@ public class PlayerInteraction : MonoBehaviour
 
     void Update()
     {
-        // Raycast para detectar o alvo
-        Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
-        RaycastHit hit;
-        Interactable target = null;
-
-        if (Physics.Raycast(ray, out hit, interactionRange))
+        if (!GameManager.Instance.isGameOver)
         {
-            target = hit.collider.GetComponent<Interactable>();
-        }
+            // Raycast para detectar o alvo
+            Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
+            RaycastHit hit;
+            Interactable target = null;
 
-        // Pegar
-        if (Input.GetButtonDown("Pick") && target != null && target.isPickable)
-        {
-            if (itemInHands == null)
-                GrabItem(target);
+            if (Physics.Raycast(ray, out hit, interactionRange))
+            {
+                target = hit.collider.GetComponent<Interactable>();
+            }
+
+            // Pegar
+            if (Input.GetButtonDown("Pick") && target != null && target.isPickable)
+            {
+                if (itemInHands == null)
+                    GrabItem(target);
+                else
+                    StartCoroutine(GameUIManager.Instance.ChangeFeedbackText("Você precisa estar de mãos vazias para pegar este item."));
+            }
+
+            // Soltar
+            if (Input.GetButtonDown("Drop") && itemInHands != null)
+            {
+                DropItem();
+            }
+
+            // Consumir
+            if (Input.GetButtonDown("Consume") && itemInHands is Consumable consumable)
+            {
+                consumable.Consume(this);
+            }
+
+            // Usar
+            if (Input.GetButtonDown("Use"))
+            {
+                if (itemInHands != null)
+                {
+                    // Usando um item em outro
+                    if (target != null)
+                        target.Use(this, itemInHands);
+                }
+                else if (itemInHands == null && target != null)
+                {
+                    // Interação direta sem item na mão
+                    target.Use(this, null);
+                }
+            }
+
+            if (target != null)
+            {
+                Interactable interactable = target.GetComponent<Interactable>();
+
+                if (interactable != null)
+                    GameUIManager.Instance.ChangeInteractionText(interactable.interactionText);
+            }
             else
-                StartCoroutine(GameUIManager.Instance.ChangeFeedbackText("Você precisa estar de mãos vazias para pegar este item."));
+                GameUIManager.Instance.ChangeInteractionText("");
         }
-
-        // Soltar
-        if (Input.GetButtonDown("Drop") && itemInHands != null)
-        {
-            DropItem();
-        }
-
-        // Consumir
-        if (Input.GetButtonDown("Consume") && itemInHands is Consumable consumable)
-        {
-            consumable.Consume(this);
-        }
-
-        // Usar
-        if (Input.GetButtonDown("Use"))
-        {
-            if (itemInHands != null)
-            {
-                // Usando um item em outro
-                if (target != null)
-                    target.Use(this, itemInHands);
-            }
-            else if (itemInHands == null && target != null)
-            {
-                // Interação direta sem item na mão
-                target.Use(this, null);
-            }
-        }
-
-        if (target != null)
-        {
-            Interactable interactable = target.GetComponent<Interactable>();
-
-            if (interactable != null)
-                GameUIManager.Instance.ChangeInteractionText(interactable.interactionText);
-        }
-        else
-            GameUIManager.Instance.ChangeInteractionText("");
     }
 
     void GrabItem(Interactable targetItem)

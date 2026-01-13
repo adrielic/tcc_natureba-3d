@@ -121,7 +121,9 @@ public abstract class Entity : MonoBehaviour
             // Atacar o jogador
             if (hit.CompareTag("Player"))
             {
-                Debug.Log($"{gameObject.name} hit you.");
+                Debug.Log($"{gameObject.name} has hit the player.");
+
+                GameManager.Instance.GameOver("Animal");
             }
 
             // Pegar a isca
