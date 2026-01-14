@@ -6,7 +6,7 @@ public class ConsumableMedicine : Consumable
     {
         base.Consume(player);
         
-        GameManager.Instance.UpdateObjective('m');
+        GameManager.Instance.CheckObjective('m');
         GameUIManager.Instance.UpdateObjetiveDisplay('m');
     }
 }

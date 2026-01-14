@@ -12,11 +12,11 @@ public class StructureCabin : Structure
         // Se o objetivo do dia tiver sido concluído
         if (GameManager.Instance.objectiveWasCompleted)
         {
-            StartCoroutine(GameUIManager.Instance.ChangeFeedbackText("Você vai dormir."));
+            GameManager.Instance.FinishLevel();
         }
         else
         {
-            StartCoroutine(GameUIManager.Instance.ChangeFeedbackText("Você precisa completar todos os objetivos primeiro."));
+            StartCoroutine(GameUIManager.Instance.ShowFeedback("Você precisa completar todos os objetivos primeiro."));
         }
     }
 }

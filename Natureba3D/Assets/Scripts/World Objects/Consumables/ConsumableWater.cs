@@ -11,10 +11,10 @@ public class ConsumableWater : Consumable
         {
             base.Consume(player);
 
-            GameManager.Instance.UpdateObjective('w');
+            GameManager.Instance.CheckObjective('w');
             GameUIManager.Instance.UpdateObjetiveDisplay('w');
         }
         else
-            StartCoroutine(GameUIManager.Instance.ChangeFeedbackText("O cantil está vazio."));
+            StartCoroutine(GameUIManager.Instance.ShowFeedback("O cantil está vazio."));
     }
 }

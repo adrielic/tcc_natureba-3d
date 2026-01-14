@@ -7,7 +7,7 @@ public class Interactable : MonoBehaviour
 
     public virtual void Use(PlayerInteraction player, Interactable target)
     {
-        StartCoroutine(GameUIManager.Instance.ChangeFeedbackText("Não é possível usar este item desta forma."));
+        StartCoroutine(GameUIManager.Instance.ShowFeedback("Não é possível usar este item desta forma."));
         Debug.Log("Not implemented.");
     }
 

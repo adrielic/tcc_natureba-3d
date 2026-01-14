@@ -12,11 +12,11 @@ public class ConsumableToxin : Consumable
         switch (type)
         {
             case ToxinType.Poison:
-                StartCoroutine(GameUIManager.Instance.ChangeFeedbackText("Você morreu."));
+                StartCoroutine(GameUIManager.Instance.ShowFeedback("Você morreu."));
                 GameManager.Instance.GameOver("Intoxication_Mushroom");
                 break;
             case ToxinType.Hallucination:
-                StartCoroutine(GameUIManager.Instance.ChangeFeedbackText("Você está alucinando."));
+                StartCoroutine(GameUIManager.Instance.ShowFeedback("Você está alucinando."));
                 break;
         }
     }

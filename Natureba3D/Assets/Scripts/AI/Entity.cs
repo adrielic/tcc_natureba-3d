@@ -100,8 +100,9 @@ public abstract class Entity : MonoBehaviour
 
     protected virtual void OnChasingTarget()
     {
-        Debug.Log($"{gameObject.name} is chasing the player.");
         anim.SetTrigger("DetectedPlayer");
+
+        Debug.Log($"{gameObject.name} is chasing the player.");
     }
 
     public void TakeBait()
@@ -133,7 +134,9 @@ public abstract class Entity : MonoBehaviour
                 Debug.Log($"{gameObject.name} has taken the {baitTypeToDetect}.");
 
                 if (hit.TryGetComponent<Interactable>(out var interactable))
+                {
                     interactable.isPickable = false;
+                }
             }
         }
     }

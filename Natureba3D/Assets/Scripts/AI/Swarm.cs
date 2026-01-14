@@ -19,7 +19,9 @@ public class Swarm : Entity
             }
         }
         else if (target == null)
+        {
             Destroy(gameObject, 1f);
+        } 
     }
 
     protected override void OnChasingTarget()

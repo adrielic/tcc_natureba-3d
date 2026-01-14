@@ -13,12 +13,12 @@ public class StructureWater : Structure
             {
                 canteen.fullness = ConsumableWater.CanteenFullness.Full;
                 canteen.gameObject.name = "Canteen (Full)";
-                StartCoroutine(GameUIManager.Instance.ChangeFeedbackText("Você encheu a garrafa."));
+                StartCoroutine(GameUIManager.Instance.ShowFeedback("Você encheu a garrafa."));
                 Debug.Log("You have refilled the canteen.");
             }
             else if (canteen.fullness == ConsumableWater.CanteenFullness.Full)
             {
-                StartCoroutine(GameUIManager.Instance.ChangeFeedbackText("A garrafa já está cheia."));
+                StartCoroutine(GameUIManager.Instance.ShowFeedback("A garrafa já está cheia."));
                 Debug.Log("The canteen is already full.");
             }
         }

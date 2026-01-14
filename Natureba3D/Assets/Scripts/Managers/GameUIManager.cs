@@ -4,7 +4,7 @@ using TMPro;
 
 public class GameUIManager : MonoBehaviour
 {
-    public GameObject hud, deathScreen;
+    public GameObject hud, deathScreen, pausePanel;
     public TMP_Text interactionTxt, feedbackTxt, foodTxt, waterTxt, medicineTxt, deathMessageTxt;
 
     public static GameUIManager Instance { get; private set; }
@@ -22,19 +22,21 @@ public class GameUIManager : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(ChangeFeedbackText(null));
+        StartCoroutine(ShowFeedback(null));
         UpdateObjetiveDisplay('n');
     }
 
-    public void ChangeInteractionText(string newText)
+    public void ShowInteraction(string newText)
     {
         interactionTxt.text = newText;
     }
 
-    public IEnumerator ChangeFeedbackText(string newText)
+    public IEnumerator ShowFeedback(string newText)
     {
         feedbackTxt.text = newText;
+
         yield return new WaitForSeconds(1);
+
         feedbackTxt.text = null;
     }
 
@@ -72,16 +74,38 @@ public class GameUIManager : MonoBehaviour
         hud.SetActive(true);
     }
 
+    public void OpenPausePanel()
+    {
+        pausePanel.SetActive(true);
+        DeactivateHUD();
+    }
+
+    public void ClosePausePanel()
+    {
+        pausePanel.SetActive(false);
+        DeactivateHUD();
+    }
+
     public void UpdateDeathScreen(string causeOfDeath, string newText)
     {
         DeactivateHUD();
         deathScreen.SetActive(true);
-
         deathMessageTxt.text = newText;
     }
 
-    public void RestartButton()
+    public void Restart()
     {
         SceneLoader.Instance.LoadScene(GameData.Load());
+    }
+
+    public void Resume()
+    {
+        pausePanel.SetActive(false);
+        ActivateHUD();
+    }
+
+    public void ReturnToMenu()
+    {
+        SceneLoader.Instance.LoadScene(0);
     }
 }

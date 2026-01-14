@@ -1,16 +1,15 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
-    [Header("Level Objectives")]
+    [Header("Objectives")]
     public bool objectiveWasCompleted;
     public int foodNeeded, waterNeeded, medicineNeeded;
     [HideInInspector] public int foodCount = 0, waterCount = 0, medicineCount = 0;
 
-    [Header("Level Timer")]
+    [Header("Timer")]
     public int totalDayTime;
     public bool dayHasStarted = false;
     Coroutine dayTime;
@@ -46,6 +45,51 @@ public class GameManager : MonoBehaviour
             StopCoroutine(dayTime);
             dayTime = null;
         }
+
+        if (Input.GetButtonDown("Pause/Unpause"))
+        {
+            
+        }
+    }
+
+    public void CheckObjective(char objective)
+    {
+        switch (objective)
+        {
+            case 'f':
+                foodCount++;
+                break;
+            case 'w':
+                waterCount++;
+                break;
+            case 'm':
+                medicineCount++;
+                break;
+        }
+
+        if (foodCount == foodNeeded && waterCount == waterNeeded && medicineCount == medicineNeeded)
+        {
+            objectiveWasCompleted = true;
+        }
+    }
+
+    public void FinishLevel()
+    {
+        int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+        Debug.Log($"Advancing to next level (Day {nextSceneIndex}).");
+        SceneLoader.Instance.LoadScene(nextSceneIndex);
+    }
+
+    IEnumerator DayTime()
+    {
+        while (totalDayTime > 0)
+        {
+            yield return new WaitForSeconds(1);
+            totalDayTime--;
+        }
+
+        GameOver("Night");
+        dayTime = null;
     }
 
     public void GameOver(string causeOfDeath)
@@ -77,34 +121,13 @@ public class GameManager : MonoBehaviour
         Debug.Log($"The player is dead ({causeOfDeath}).");
     }
 
-    public void UpdateObjective(char objective)
+    public void PauseGame()
     {
-        switch (objective)
-        {
-            case 'f':
-                foodCount++;
-                break;
-            case 'w':
-                waterCount++;
-                break;
-            case 'm':
-                medicineCount++;
-                break;
-        }
-
-        if (foodCount == foodNeeded && waterCount == waterNeeded && medicineCount == medicineNeeded)
-            objectiveWasCompleted = true;
+        
     }
 
-    IEnumerator DayTime()
+    public void UnpauseGame()
     {
-        while (totalDayTime > 0)
-        {
-            yield return new WaitForSeconds(1);
-            totalDayTime--;
-        }
-
-        GameOver("Night");
-        dayTime = null;
+        
     }
 }

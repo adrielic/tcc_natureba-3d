@@ -9,6 +9,6 @@ public class StructureDeadTree : Structure
 
         base.Use(player, target);
 
-        StartCoroutine(GameUIManager.Instance.ChangeFeedbackText("Você derrubou a árvore."));
+        StartCoroutine(GameUIManager.Instance.ShowFeedback("Você derrubou a árvore."));
     }
 }

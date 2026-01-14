@@ -10,12 +10,12 @@ public class ConsumableFood : Consumable
 
         if (isEdible)
         {
-            GameManager.Instance.UpdateObjective('f');
+            GameManager.Instance.CheckObjective('f');
             GameUIManager.Instance.UpdateObjetiveDisplay('f');
         }
         else
         {
-            StartCoroutine(GameUIManager.Instance.ChangeFeedbackText("Você morreu."));
+            StartCoroutine(GameUIManager.Instance.ShowFeedback("Você morreu."));
             GameManager.Instance.GameOver("Intoxication_Fish");
         }
     }

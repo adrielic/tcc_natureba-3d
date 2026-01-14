@@ -18,7 +18,7 @@ public class StructureCampfire : Structure
             isLit = true;
             gameObject.name = "Campfire (Lit)";
             logs.SetActive(true);
-            StartCoroutine(GameUIManager.Instance.ChangeFeedbackText("Você acendeu a fogueira."));
+            StartCoroutine(GameUIManager.Instance.ShowFeedback("Você acendeu a fogueira."));
             Destroy(handSlot.gameObject);
             player.ClearHands();
         }
@@ -27,7 +27,7 @@ public class StructureCampfire : Structure
         {
             fish.isEdible = true;
             fish.gameObject.name = "Fish (Cooked)";
-            StartCoroutine(GameUIManager.Instance.ChangeFeedbackText("Você assou o peixe."));
+            StartCoroutine(GameUIManager.Instance.ShowFeedback("Você assou o peixe."));
         }
     }
 }

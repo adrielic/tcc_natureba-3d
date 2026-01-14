@@ -25,12 +25,16 @@ public class PlayerInteraction : MonoBehaviour
             }
 
             // Pegar
-            if (Input.GetButtonDown("Pick") && target != null && target.isPickable)
+            if (Input.GetButtonDown("Grab") && target != null && target.isPickable)
             {
                 if (itemInHands == null)
+                {
                     GrabItem(target);
+                }
                 else
-                    StartCoroutine(GameUIManager.Instance.ChangeFeedbackText("Você precisa estar de mãos vazias para pegar este item."));
+                {
+                    StartCoroutine(GameUIManager.Instance.ShowFeedback("Suas mãos estão ocupadas."));
+                }
             }
 
             // Soltar
@@ -52,7 +56,9 @@ public class PlayerInteraction : MonoBehaviour
                 {
                     // Usando um item em outro
                     if (target != null)
+                    {
                         target.Use(this, itemInHands);
+                    }
                 }
                 else if (itemInHands == null && target != null)
                 {
@@ -66,16 +72,21 @@ public class PlayerInteraction : MonoBehaviour
                 Interactable interactable = target.GetComponent<Interactable>();
 
                 if (interactable != null)
-                    GameUIManager.Instance.ChangeInteractionText(interactable.interactionText);
+                {
+                    GameUIManager.Instance.ShowInteraction(interactable.interactionText);
+                }
             }
             else
-                GameUIManager.Instance.ChangeInteractionText("");
+            {
+                GameUIManager.Instance.ShowInteraction("");
+            }
         }
     }
 
     void GrabItem(Interactable targetItem)
     {
-        if (itemInHands != null) return;
+        if (itemInHands != null)
+            return;
 
         itemInHands = targetItem;
         targetItem.OnPickup(handsTransform);
@@ -83,7 +94,8 @@ public class PlayerInteraction : MonoBehaviour
 
     void DropItem()
     {
-        if (itemInHands == null) return;
+        if (itemInHands == null)
+            return;
 
         Interactable dropped = itemInHands;
         ClearHands();
