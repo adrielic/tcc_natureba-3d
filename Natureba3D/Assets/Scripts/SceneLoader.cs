@@ -1,8 +1,12 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
+    Animator anim;
+    public float transitionTime;
+
     public static SceneLoader Instance { get; private set; }
 
     void Awake()
@@ -18,6 +22,11 @@ public class SceneLoader : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
+
     public void LoadScene(int sceneIndex)
     {
         if (sceneIndex < 0 || sceneIndex >= SceneManager.sceneCountInBuildSettings)
@@ -25,6 +34,13 @@ public class SceneLoader : MonoBehaviour
             Debug.LogError($"Invalid scene index: {sceneIndex}.");
             return;
         }
+
+        StartCoroutine(PlaySceneTransition(sceneIndex));
+    }
+
+    IEnumerator PlaySceneTransition(int sceneIndex)
+    {
+        yield return new WaitForSecondsRealtime(transitionTime);
 
         SceneManager.LoadScene(sceneIndex);
     }

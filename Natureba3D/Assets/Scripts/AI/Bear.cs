@@ -11,8 +11,8 @@ public class Bear : Entity
 
     void ChangeSpeeds()
     {
-        agent.speed = 20;
-        agent.angularSpeed = 200;
+        agent.speed = 8;
+        agent.angularSpeed = 360;
         agent.acceleration = 50;
     }
 }

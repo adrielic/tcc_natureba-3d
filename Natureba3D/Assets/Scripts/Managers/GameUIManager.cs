@@ -4,8 +4,17 @@ using TMPro;
 
 public class GameUIManager : MonoBehaviour
 {
-    public GameObject hud, deathScreen, pausePanel;
-    public TMP_Text interactionTxt, feedbackTxt, foodTxt, waterTxt, medicineTxt, deathMessageTxt;
+    [Header("HUD")]
+    public GameObject hud;
+    public GameObject map;
+    public TMP_Text interactionTxt, feedbackTxt, foodTxt, waterTxt, medicineTxt;
+
+    [Header("Game Over")]
+    public GameObject gameOverPanel;
+    public TMP_Text deathMessageTxt;
+
+    [Header("Pause")]
+    public GameObject pausePanel;
 
     public static GameUIManager Instance { get; private set; }
 
@@ -23,7 +32,7 @@ public class GameUIManager : MonoBehaviour
     void Start()
     {
         StartCoroutine(ShowFeedback(null));
-        UpdateObjetiveDisplay('n');
+        UpdateObjetiveDisplay("none");
     }
 
     public void ShowInteraction(string newText)
@@ -40,35 +49,47 @@ public class GameUIManager : MonoBehaviour
         feedbackTxt.text = null;
     }
 
-    public void UpdateObjetiveDisplay(char objective)
+    public void UpdateObjetiveDisplay(string objective)
     {
         switch (objective)
         {
-            case 'f':
-                foodTxt.text = "Comida: " + GameManager.Instance.foodCount + "/" + GameManager.Instance.foodNeeded;
+            case "food":
+                foodTxt.text = "Comida: " + GameManager.Instance.foodCount + "/" + GameManager.Instance.requiredFood;
                 break;
-            case 'w':
-                waterTxt.text = "Água: " + GameManager.Instance.waterCount + "/" + GameManager.Instance.waterNeeded;
+            case "water":
+                waterTxt.text = "Água: " + GameManager.Instance.waterCount + "/" + GameManager.Instance.requiredWater;
                 break;
-            case 'm':
-                medicineTxt.text = "Medicina: " + GameManager.Instance.medicineCount + "/" + GameManager.Instance.medicineNeeded;
+            case "medicine":
+                medicineTxt.text = "Medicina: " + GameManager.Instance.medicineCount + "/" + GameManager.Instance.requiredMedicine;
                 break;
-            case 'n':
-                foodTxt.text = "Comida: " + GameManager.Instance.foodCount + "/" + GameManager.Instance.foodNeeded;
-                waterTxt.text = "Água: " + GameManager.Instance.waterCount + "/" + GameManager.Instance.waterNeeded;
-                medicineTxt.text = "Medicina: " + GameManager.Instance.medicineCount + "/" + GameManager.Instance.medicineNeeded;
+            case "none":
+                foodTxt.text = "Comida: " + GameManager.Instance.foodCount + "/" + GameManager.Instance.requiredFood;
+                waterTxt.text = "Água: " + GameManager.Instance.waterCount + "/" + GameManager.Instance.requiredWater;
+                medicineTxt.text = "Medicina: " + GameManager.Instance.medicineCount + "/" + GameManager.Instance.requiredMedicine;
                 break;
         }
     }
 
-    public void DeactivateHUD()
+    public void ShowGameOver(string causeOfDeath, string newText)
+    {
+        HideHUD();
+        gameOverPanel.SetActive(true);
+        deathMessageTxt.text = newText;
+    }
+
+    public void HandleMap(bool isActive)
+    {
+        map.SetActive(isActive);
+    }
+
+    public void HideHUD()
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         hud.SetActive(false);
     }
 
-    public void ActivateHUD()
+    public void ShowHUD()
     {
         Cursor.lockState = CursorLockMode.Locked;
         hud.SetActive(true);
@@ -77,31 +98,19 @@ public class GameUIManager : MonoBehaviour
     public void OpenPausePanel()
     {
         pausePanel.SetActive(true);
-        DeactivateHUD();
+        HideHUD();
     }
 
     public void ClosePausePanel()
     {
         pausePanel.SetActive(false);
-        DeactivateHUD();
-    }
-
-    public void UpdateDeathScreen(string causeOfDeath, string newText)
-    {
-        DeactivateHUD();
-        deathScreen.SetActive(true);
-        deathMessageTxt.text = newText;
+        ShowHUD();
     }
 
     public void Restart()
     {
+        Time.timeScale = 1;
         SceneLoader.Instance.LoadScene(GameData.Load());
-    }
-
-    public void Resume()
-    {
-        pausePanel.SetActive(false);
-        ActivateHUD();
     }
 
     public void ReturnToMenu()

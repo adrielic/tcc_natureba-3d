@@ -10,7 +10,7 @@ public class StructureCabin : Structure
         base.Use(player, handSlot);
 
         // Se o objetivo do dia tiver sido concluído
-        if (GameManager.Instance.objectiveWasCompleted)
+        if (GameManager.Instance.objectiveComplete)
         {
             GameManager.Instance.FinishLevel();
         }

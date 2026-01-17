@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -36,8 +35,7 @@ public abstract class Entity : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (baitTaken)
-            return;
+        if (baitTaken) return;
 
         DetectTarget();
         CheckInteractions();
@@ -59,8 +57,7 @@ public abstract class Entity : MonoBehaviour
 
     protected void Roam()
     {
-        if (waypoints.Length == 0)
-            return;
+        if (waypoints.Length == 0) return;
 
         agent.SetDestination(waypoints[currentWaypoint].position);
 
@@ -84,7 +81,7 @@ public abstract class Entity : MonoBehaviour
             }
 
             // Isca
-            if (detectBait && hit.TryGetComponent<Bait>(out var bait) && bait.type == baitTypeToDetect)
+            if (detectBait && hit.TryGetComponent<Bait>(out var bait) && bait.type == baitTypeToDetect && bait.isEnabled)
             {
                 target = hit.transform;
                 return;
@@ -92,8 +89,7 @@ public abstract class Entity : MonoBehaviour
         }
 
         // Só limpa o alvo se for enxame (os outros mantêm até interagir)
-        if (!(this is Swarm))
-            return;
+        if (!(this is Swarm)) return;
 
         target = null;
     }

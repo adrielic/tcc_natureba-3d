@@ -10,8 +10,7 @@ public class ConsumableFood : Consumable
 
         if (isEdible)
         {
-            GameManager.Instance.CheckObjective('f');
-            GameUIManager.Instance.UpdateObjetiveDisplay('f');
+            GameManager.Instance.CheckObjective("food");
         }
         else
         {

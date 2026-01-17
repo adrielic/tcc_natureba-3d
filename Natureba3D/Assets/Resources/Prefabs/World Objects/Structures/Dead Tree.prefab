@@ -10,19 +10,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 73a47fcca4a9b5446bb95f904617bfb4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -48.11
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 73a47fcca4a9b5446bb95f904617bfb4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 73a47fcca4a9b5446bb95f904617bfb4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -52.34
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 73a47fcca4a9b5446bb95f904617bfb4, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.8870109
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 73a47fcca4a9b5446bb95f904617bfb4, type: 3}
       propertyPath: m_LocalRotation.x
@@ -30,11 +30,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 73a47fcca4a9b5446bb95f904617bfb4, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: -0.46174863
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 73a47fcca4a9b5446bb95f904617bfb4, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 73a47fcca4a9b5446bb95f904617bfb4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -73,6 +73,9 @@ PrefabInstance:
       addedObject: {fileID: 8692948125337691169}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 73a47fcca4a9b5446bb95f904617bfb4, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 905699579125436185}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 73a47fcca4a9b5446bb95f904617bfb4, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 4901400190819138157}
   m_SourcePrefab: {fileID: 100100000, guid: 73a47fcca4a9b5446bb95f904617bfb4, type: 3}
 --- !u!1 &6033225982415022066 stripped
@@ -101,6 +104,28 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.9593354, y: 8.937106, z: 1.6585505}
   m_Center: {x: -0.04642579, y: 4.468553, z: -0.20315886}
+--- !u!95 &905699579125436185
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6033225982415022066}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bb51b3a0dd71f0749a32b72e2ce64dba, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &4901400190819138157
 MonoBehaviour:
   m_ObjectHideFlags: 0

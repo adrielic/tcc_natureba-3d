@@ -7,7 +7,7 @@ public class Wolf : Entity
         base.OnChasingTarget();
         
         agent.speed = 8;
-        agent.angularSpeed = 200;
+        agent.angularSpeed = 360;
         agent.acceleration = 50;
     }
 }

@@ -2,6 +2,13 @@ using UnityEngine;
 
 public class StructureDeadTree : Structure
 {
+    Animator anim;
+
+    void Start()
+    {
+        anim = GetComponent<Animator>();
+    } 
+
     public override void Use(PlayerInteraction player, Interactable target)
     {
         if (target != null)
@@ -9,6 +16,6 @@ public class StructureDeadTree : Structure
 
         base.Use(player, target);
 
-        StartCoroutine(GameUIManager.Instance.ShowFeedback("Você derrubou a árvore."));
+        anim.SetTrigger("Interact");
     }
 }

@@ -1,4 +1,3 @@
-using UnityEditor.Search;
 using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
@@ -12,7 +11,7 @@ public class PlayerInteraction : MonoBehaviour
 
     void Update()
     {
-        if (!GameManager.Instance.isGameOver)
+        if (!GameManager.Instance.isGameOver && !GameManager.Instance.isPaused)
         {
             // Raycast para detectar o alvo
             Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
@@ -107,7 +106,7 @@ public class PlayerInteraction : MonoBehaviour
         itemInHands = null;
     }
 
-    protected virtual void OnDrawGizmosSelected()
+    void OnDrawGizmosSelected()
     {
         // Área de detecção
         Gizmos.color = Color.green;

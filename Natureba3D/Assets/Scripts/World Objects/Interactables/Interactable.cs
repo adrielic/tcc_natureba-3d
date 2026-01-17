@@ -5,7 +5,7 @@ public class Interactable : MonoBehaviour
     public string interactionText;
     public bool isPickable;
 
-    public virtual void Use(PlayerInteraction player, Interactable target)
+    public virtual void Use(PlayerInteraction player, Interactable handSlot)
     {
         StartCoroutine(GameUIManager.Instance.ShowFeedback("Não é possível usar este item desta forma."));
         Debug.Log("Not implemented.");
@@ -18,18 +18,24 @@ public class Interactable : MonoBehaviour
         transform.localRotation = Quaternion.identity;
 
         if (TryGetComponent<Rigidbody>(out var rb))
+        {
             rb.isKinematic = true;
+        }
 
         if (TryGetComponent<Collider>(out var col))
+        {
             col.enabled = false;
+        }
 
         if (TryGetComponent<Fish>(out var fishAI))
+        {
             fishAI.ShutDown();
+        }
 
-        // if (this is CarryableOnly && GetComponent<CarryableOnly>().type == CarryableOnly.CarryableType.Beehive)
-        // {
-        //     GameObject swarm = Instantiate(Resources.Load("Prefabs/Swarm"), transform.position, transform.rotation) as GameObject;
-        // }
+        if (TryGetComponent<MeshRenderer>(out var meshRenderer))
+        {
+            meshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+        }
     }
 
     public virtual void OnDrop(Vector3 forward)
@@ -43,6 +49,18 @@ public class Interactable : MonoBehaviour
         }
 
         if (TryGetComponent<Collider>(out var col))
+        {
             col.enabled = true;
+        }
+
+        if (TryGetComponent<Bait>(out var bait))
+        {
+            bait.isEnabled = true;
+        }
+
+        if (TryGetComponent<MeshRenderer>(out var meshRenderer))
+        {
+            meshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+        }
     }
 }
