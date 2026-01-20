@@ -109,7 +109,7 @@ MonoBehaviour:
   characterController: {fileID: 2873454002769987176}
   moveSpeed: 5
   gravity: -19.62
-  jumpForce: 1.2
+  jumpForce: 2
   sprintSpeed: 8
   groundCheck: {fileID: 8210529573159532140}
   checkRadius: 0.2

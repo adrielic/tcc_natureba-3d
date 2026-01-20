@@ -141,4 +141,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionText: Pegar
   isPickable: 1
-  type: 1
+  effect: 1
