@@ -12,9 +12,9 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public int foodCount = 0, waterCount = 0, medicineCount = 0;
     public bool objectiveComplete;
 
-    [Header("Day/Night Timer")]
-    public int totalDayTime;
-    public bool dayHasStarted = false;
+    [Header("Level Countdown")]
+    public int levelTimeLimit;
+    public bool countdownWasStarted = false;
     Coroutine dayTime;
 
     [Header("System")]
@@ -39,13 +39,13 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (dayHasStarted && dayTime == null)
+        if (countdownWasStarted && dayTime == null)
         {
             dayTime = StartCoroutine(DayTime());
 
             Debug.Log($"Starting Day {SceneManager.GetActiveScene().buildIndex}.");
         }
-        else if (!dayHasStarted && dayTime != null)
+        else if (!countdownWasStarted && dayTime != null)
         {
             StopCoroutine(dayTime);
             dayTime = null;
@@ -59,7 +59,14 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetButtonDown("Pause/Unpause") && !isGameOver)
         {
-            HandlePause();
+            if (isPaused)
+            {
+                UnpauseGame();
+            }
+            else
+            {
+                PauseGame(true);
+            }
         }
     }
 
@@ -96,10 +103,10 @@ public class GameManager : MonoBehaviour
 
     IEnumerator DayTime()
     {
-        while (totalDayTime > 0)
+        while (levelTimeLimit > 0)
         {
             yield return new WaitForSeconds(1);
-            totalDayTime--;
+            levelTimeLimit--;
         }
 
         GameOver("Night");
@@ -108,29 +115,30 @@ public class GameManager : MonoBehaviour
 
     public void GameOver(string causeOfDeath)
     {
+        isGameOver = true;
+        PauseGame(false);
+
         switch (causeOfDeath)
         {
             case "Night":
-                GameUIManager.Instance.ShowGameOver(causeOfDeath, "Na floresta, a noite é perigosa. Sem abrigo, as chances de sobrevivência caem drasticamente.");
+                GameUIManager.Instance.ShowGameOverPanel(causeOfDeath, "Na floresta, a noite é perigosa. Sem abrigo, as chances de sobrevivência caem drasticamente.");
                 break;
             case "Falling":
-                GameUIManager.Instance.ShowGameOver(causeOfDeath, "Acidentes em terrenos irregulares são uma das principais causas de morte em áreas selvagens.");
+                GameUIManager.Instance.ShowGameOverPanel(causeOfDeath, "Acidentes em terrenos irregulares são uma das principais causas de morte em áreas selvagens.");
                 break;
             case "Drowning":
-                GameUIManager.Instance.ShowGameOver(causeOfDeath, "Correntes de rios podem ser traiçoeiras, mesmo em águas aparentemente calmas.");
+                GameUIManager.Instance.ShowGameOverPanel(causeOfDeath, "Correntes de rios podem ser traiçoeiras, mesmo em águas aparentemente calmas.");
                 break;
             case "Intoxication_Fish":
-                GameUIManager.Instance.ShowGameOver(causeOfDeath, "Consumir peixe cru sem tratá-lo corretamente, pode causar intoxicações graves por parasitas e bactérias.");
+                GameUIManager.Instance.ShowGameOverPanel(causeOfDeath, "Consumir peixe cru sem tratá-lo corretamente, pode causar intoxicações graves por parasitas e bactérias.");
                 break;
             case "Intoxication_Mushroom":
-                GameUIManager.Instance.ShowGameOver(causeOfDeath, "Na natureza, quanto mais colorido for um cogumelo, maiores a chances de ser venenoso.");
+                GameUIManager.Instance.ShowGameOverPanel(causeOfDeath, "Na natureza, quanto mais colorido for um cogumelo, maiores a chances de ser venenoso.");
                 break;
             case "Animal":
-                GameUIManager.Instance.ShowGameOver(causeOfDeath, "Na natureza, aproximar-se de animais selvagens é um grande risco. Respeitar o espaço deles é essencial.");
+                GameUIManager.Instance.ShowGameOverPanel(causeOfDeath, "Na natureza, aproximar-se de animais selvagens é um grande risco. Respeitar o espaço deles é essencial.");
                 break;
         }
-
-        isGameOver = true;
 
         if (dayTime != null)
         {
@@ -140,18 +148,25 @@ public class GameManager : MonoBehaviour
         Debug.Log($"The player is dead ({causeOfDeath}).");
     }
 
-    public void HandlePause()
+    public void PauseGame(bool showPausePanel)
     {
-        isPaused = !isPaused;
-        Time.timeScale = isPaused ? 0 : 1;
-
         if (isPaused)
-        {
-            GameUIManager.Instance.OpenPausePanel();
-        }
-        else
-        {
-            GameUIManager.Instance.ClosePausePanel();
-        }
+            return;
+
+        isPaused = true;
+        Time.timeScale = 0;
+
+        GameUIManager.Instance.HandlePausePanel(showPausePanel);
+    }
+
+    public void UnpauseGame()
+    {
+        if (!isPaused)
+            return;
+
+        isPaused = false;
+        Time.timeScale = 1;
+
+        GameUIManager.Instance.HandlePausePanel(false);
     }
 }

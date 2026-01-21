@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     float currentMoveSpeed;
 
     public Transform groundCheck;
+    [Range(0.1f, 1f)]
     public float checkRadius = 0.2f;
     public LayerMask groundMask;
 
@@ -23,14 +24,14 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (!GameManager.Instance.isGameOver && !GameManager.Instance.isPaused)
+        if (!GameManager.Instance.isPaused)
         {
             if (IsGrounded() && velocity.y < 0)
             {
                 velocity.y = -2f;
             }
 
-            if (Input.GetKey(KeyCode.LeftShift))
+            if (Input.GetButton("Sprint"))
             {
                 currentMoveSpeed = sprintSpeed;
             }
@@ -70,11 +71,6 @@ public class PlayerMovement : MonoBehaviour
     bool IsGrounded()
     {
         return Physics.CheckSphere(groundCheck.position, checkRadius, groundMask);
-    }
-
-    void Sprint()
-    {
-        currentMoveSpeed = sprintSpeed;
     }
 
     void OnDrawGizmosSelected()

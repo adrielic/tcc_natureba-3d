@@ -4,19 +4,21 @@ using UnityEngine.AI;
 public abstract class Entity : MonoBehaviour
 {
     [Header("General Settings")]
-    public float detectionRadius = 10f;
     public Transform player;
-    public LayerMask detectionLayer;
     public bool useWaypoints;
     public Transform[] waypoints;
     public float waypointTolerance = 1f;
 
     [Header("Detection Settings")]
+    [Range(0.1f, 20f)]
+    public float detectionRadius = 10f;
     public bool detectPlayer = true;
     public bool detectBait = false;
     public Bait.BaitType baitTypeToDetect;
+    public LayerMask detectionLayer;
 
     [Header("Interaction Settings")]
+    [Range(0.1f, 20f)]
     public float interactionRadius = 2f;
     public LayerMask interactionLayer;
 

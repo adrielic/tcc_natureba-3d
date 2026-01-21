@@ -70,46 +70,47 @@ public class GameUIManager : MonoBehaviour
         }
     }
 
-    public void ShowGameOver(string causeOfDeath, string newText)
+    public void ShowGameOverPanel(string causeOfDeath, string newText)
     {
-        HideHUD();
         gameOverPanel.SetActive(true);
         deathMessageTxt.text = newText;
+        HandleHUD(false);
     }
 
-    public void HandleMap(bool isActive)
+    public void HandleMap(bool showMap)
     {
-        map.SetActive(isActive);
+        map.SetActive(showMap);
     }
 
-    public void HideHUD()
+    public void HandleHUD(bool showHUD)
     {
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-        hud.SetActive(false);
+        hud.SetActive(showHUD);
+
+        if (showHUD)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
     }
 
-    public void ShowHUD()
+    public void HandlePausePanel(bool showPausePanel)
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        hud.SetActive(true);
+        pausePanel.SetActive(showPausePanel);
+        HandleHUD(!showPausePanel);
     }
 
-    public void OpenPausePanel()
+    public void Resume()
     {
-        pausePanel.SetActive(true);
-        HideHUD();
-    }
-
-    public void ClosePausePanel()
-    {
-        pausePanel.SetActive(false);
-        ShowHUD();
+        GameManager.Instance.UnpauseGame();
     }
 
     public void Restart()
     {
-        Time.timeScale = 1;
+        GameManager.Instance.UnpauseGame();
         SceneLoader.Instance.LoadScene(GameData.Load());
     }
 

@@ -1,0 +1,283 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &3859083995837309513
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7406743463562635138, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463562635138, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463562635138, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463562635138, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463562635138, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463562635138, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463562635138, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463562635138, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463562635138, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463562635138, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463563026406, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: m_Name
+      value: SkyboxDayNightCycle
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _sunset
+      value: 85
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _moonset
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _sunrise
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _moonrise
+      value: 85
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _sunAltitude
+      value: 115
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _moonAltitude
+      value: 115
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _sunLongitude
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _moonLongitude
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _moonParamsList.Params.Array.data[0].Time
+      value: 85
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _moonParamsList.Params.Array.data[1].Time
+      value: 87.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _moonParamsList.Params.Array.data[3].Time
+      value: 22.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _moonParamsList.Params.Array.data[4].Time
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _skyParamsList.Params.Array.data[4].TopColor.g
+      value: 0.3167975
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _skyParamsList.Params.Array.data[4].TopColor.r
+      value: 0.015686287
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _skyParamsList.Params.Array.data[5].TopColor.g
+      value: 0.35365525
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _skyParamsList.Params.Array.data[5].TopColor.r
+      value: 0.015686287
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _skyParamsList.Params.Array.data[6].TopColor.b
+      value: 0.78867924
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _skyParamsList.Params.Array.data[6].TopColor.g
+      value: 0.49404052
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _skyParamsList.Params.Array.data[6].TopColor.r
+      value: 0.10565326
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _skyParamsList.Params.Array.data[7].TopColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _skyParamsList.Params.Array.data[7].TopColor.g
+      value: 0.5686275
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _skyParamsList.Params.Array.data[8].TopColor.b
+      value: 0.7882353
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _skyParamsList.Params.Array.data[8].TopColor.g
+      value: 0.49411765
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _skyParamsList.Params.Array.data[8].TopColor.r
+      value: 0.105882354
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _skyParamsList.Params.Array.data[9].TopColor.g
+      value: 0.3529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _skyParamsList.Params.Array.data[10].TopColor.g
+      value: 0.31764707
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _sunParamsList.Params.Array.data[3].TintColor.b
+      value: 0.7601495
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _sunParamsList.Params.Array.data[3].TintColor.g
+      value: 0.79965645
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _sunParamsList.Params.Array.data[3].TintColor.r
+      value: 0.90943396
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _sunParamsList.Params.Array.data[4].TintColor.b
+      value: 0.48984686
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _sunParamsList.Params.Array.data[4].TintColor.g
+      value: 0.5902672
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _sunParamsList.Params.Array.data[4].TintColor.r
+      value: 0.8037735
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _sunParamsList.Params.Array.data[3].LightColor.b
+      value: 0.8584906
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _sunParamsList.Params.Array.data[3].LightColor.g
+      value: 0.88511735
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _sunParamsList.Params.Array.data[3].LightColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _sunParamsList.Params.Array.data[4].LightColor.b
+      value: 0.79208964
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _sunParamsList.Params.Array.data[4].LightColor.g
+      value: 0.87832594
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _sunParamsList.Params.Array.data[4].LightColor.r
+      value: 0.9924528
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _skyParamsList.Params.Array.data[5].MiddleColor.b
+      value: 0.92156863
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _skyParamsList.Params.Array.data[5].MiddleColor.g
+      value: 0.80297697
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _skyParamsList.Params.Array.data[6].MiddleColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _skyParamsList.Params.Array.data[6].MiddleColor.g
+      value: 0.8117647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _skyParamsList.Params.Array.data[6].MiddleColor.r
+      value: 0.54901963
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _skyParamsList.Params.Array.data[7].MiddleColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _skyParamsList.Params.Array.data[7].MiddleColor.g
+      value: 0.74509805
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _skyParamsList.Params.Array.data[7].MiddleColor.r
+      value: 0.39215687
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _skyParamsList.Params.Array.data[8].MiddleColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _skyParamsList.Params.Array.data[8].MiddleColor.g
+      value: 0.8117647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _skyParamsList.Params.Array.data[8].MiddleColor.r
+      value: 0.54901963
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _skyParamsList.Params.Array.data[9].MiddleColor.b
+      value: 0.92156863
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _skyParamsList.Params.Array.data[9].MiddleColor.g
+      value: 0.8039216
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _skyParamsList.Params.Array.data[9].MiddleColor.r
+      value: 0.6745098
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _sunParamsList.Params.Array.data[2].LightIntencity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _sunParamsList.Params.Array.data[3].LightIntencity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _sunParamsList.Params.Array.data[4].LightIntencity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406743463572565832, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}
+      propertyPath: _sunParamsList.Params.Array.data[5].LightIntencity
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6152559bc63e74e40ad8d8940c6930c7, type: 3}

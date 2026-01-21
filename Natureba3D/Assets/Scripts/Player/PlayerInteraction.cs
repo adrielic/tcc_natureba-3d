@@ -4,6 +4,7 @@ public class PlayerInteraction : MonoBehaviour
 {
     [Header("Configuration")]
     public Camera playerCamera;
+    [Range(1f, 10f)]
     public float interactionRange = 3f;
 
     public Transform handsTransform;
@@ -11,7 +12,7 @@ public class PlayerInteraction : MonoBehaviour
 
     void Update()
     {
-        if (!GameManager.Instance.isGameOver && !GameManager.Instance.isPaused)
+        if (!GameManager.Instance.isPaused)
         {
             // Raycast para detectar o alvo
             Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
