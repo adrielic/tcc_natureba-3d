@@ -1,0 +1,119 @@
+using UnityEngine;
+
+// Classe dos animais hostis ao jogador
+public class Hostile : Entity
+{
+    [Header("Chasing")]
+    [SerializeField] protected float chaseSpeed = 10f;
+    [SerializeField] protected float chaseAngularSpeed = 360f;
+    [SerializeField] protected float chaseAcceleration = 20f;
+    [SerializeField] protected float chaseDelay = 0f; // Para animais com animação de detecção, deve ter o tempo da animação para impedir que ele deslize no chão
+    protected bool isChasing;
+
+    [Header("Target Loss")]
+    [SerializeField] protected bool canLosePlayer = false; // Verdadeiro apenas para animais que podem perder o jogador com a distância
+    [SerializeField] protected bool destroyAfterLosing; // Usado apenas no enxame
+    [SerializeField] protected float loseTargetThreshold = 20f;
+
+    protected override void Update()
+    {
+        base.Update();
+
+        if (target == null) return;
+
+        ChaseTarget();
+
+        if (canLosePlayer)
+        {
+            LoseTarget();
+        }
+    }
+
+    // Persegue o jogador atribuindo ele como alvo e se já não tiver perseguindo outro alvo antes
+    protected void ChaseTarget()
+    {
+        agent.SetDestination(target.position);
+
+        if (isChasing) return;
+
+        if (chaseDelay > 0)
+        {
+            // Animais que fazem animação de detecção devem aguardar o tempo da animação antes de começar a perseguir
+            Invoke(nameof(OnChasingTarget), chaseDelay);
+        }
+        else
+        {
+            OnChasingTarget();
+        }
+
+        isChasing = true;
+
+        // Daqui pra baixo apenas para animais com animação
+        if (animator == null) return;
+
+        animator.SetTrigger("Chase");
+    }
+
+    // Animais perdem o alvo (jogador) se a distância entre jogador e animal for maior que a distância máxima estabelecida no inspector
+    protected void LoseTarget()
+    {
+        if (target.CompareTag("Player"))
+        {
+            float distance = Vector3.Distance(transform.position, target.position);
+
+            if (distance > loseTargetThreshold)
+            {
+                if (destroyAfterLosing)
+                {
+                    OnTargetLost();
+                    ShutDown(); // O enxame é destruído quando perde o jogador para dar a impressão de que se dispersou
+                    // Invoke(nameof(ShutDown), 1); 
+                }
+                else
+                {
+                    OnTargetLost();
+                }
+            }
+        }
+    }
+
+    // Quando a perseguição começa, troca os valores de velocidade do Agent para que os animais se movam mais rápido
+    protected void OnChasingTarget()
+    {
+        agent.speed = chaseSpeed;
+        agent.angularSpeed = chaseAngularSpeed;
+        agent.acceleration = chaseAcceleration;
+    }
+
+    // Quando o alvo é perdido, retira o alvo do jogador, para a perseguição e retorna aos valores iniciais de velocidade
+    protected void OnTargetLost()
+    {
+        target = null;
+        agent.ResetPath();
+        isChasing = false;
+        agent.speed = initialSpeed;
+        agent.angularSpeed = initialAngularSpeed;
+        agent.acceleration = initialAcceleration;
+    }
+
+    // Quando o contato com o jogador é efetuado, executa o game over
+    protected override void OnContact(Collider hit)
+    {
+        base.OnContact(hit);
+
+        if (hit.CompareTag("Player")) // Faz contato apenas com o jogador
+        {
+            GameManager.Instance.GameOver("Animal");
+
+            Debug.Log($"{gameObject.name} has hit the player.");
+        }
+    }
+
+    protected override void OnDrawGizmosSelected()
+    {
+        base.OnDrawGizmosSelected();
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, loseTargetThreshold);
+    }
+}

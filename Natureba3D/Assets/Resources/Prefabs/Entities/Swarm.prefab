@@ -4833,6 +4833,37 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!1 &6779807978615369313
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6176476216742205335}
+  m_Layer: 0
+  m_Name: Contact Area
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6176476216742205335
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6779807978615369313}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 4235372766847318933}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7088183961061503284
 GameObject:
   m_ObjectHideFlags: 0
@@ -4844,12 +4875,12 @@ GameObject:
   - component: {fileID: 4235372766847318933}
   - component: {fileID: 2249781387735108438}
   - component: {fileID: 8884589947420459440}
-  - component: {fileID: 994493898633458769}
   - component: {fileID: 8224194321032245888}
+  - component: {fileID: 8914466388869245861}
   m_Layer: 0
   m_Name: Swarm
   m_TagString: Enemy
-  m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -4867,6 +4898,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 348625390285922202}
+  - {fileID: 6176476216742205335}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &2249781387735108438
@@ -9614,34 +9646,6 @@ NavMeshAgent:
   m_BaseOffset: -50
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &994493898633458769
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7088183961061503284}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3ced2da3153f99439a5ccf7dfb2418c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  detectionRadius: 10
-  player: {fileID: 0}
-  detectionLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  useWaypoints: 0
-  waypoints: []
-  waypointTolerance: 1
-  detectPlayer: 1
-  detectBait: 0
-  baitTypeToDetect: 0
-  interactionRadius: 0.6
-  interactionLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  losePlayerDistance: 20
 --- !u!199 &8224194321032245888
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -9719,3 +9723,34 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &8914466388869245861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7088183961061503284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 080f43e571b579b4cacd69f05341cbd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useWaypoints: 0
+  path: {fileID: 0}
+  waypointTolerance: 1
+  detectionRadius: 10
+  detectionLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  detectPlayer: 1
+  detectBait: 0
+  preferredBait: 0
+  contactRadius: 1
+  contactArea: {fileID: 6176476216742205335}
+  chaseSpeed: 3.5
+  chaseAngularSpeed: 360
+  chaseAcceleration: 8
+  chaseDelay: 0
+  canLosePlayer: 1
+  destroyAfterLosing: 1
+  loseTargetThreshold: 10

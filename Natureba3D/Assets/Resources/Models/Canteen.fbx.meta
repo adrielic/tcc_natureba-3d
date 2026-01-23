@@ -3,7 +3,17 @@ guid: b4183b4fbab1e424bac3e587caab6428
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Canteen_A_Mat
+    second: {fileID: 2100000, guid: a48aa8cc942003940b64ec56b1e12261, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Canteen_B_Mat
+    second: {fileID: 2100000, guid: c5867314ca152be439f9b2c9e937a013, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

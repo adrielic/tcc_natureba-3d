@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &165257964407758181
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4596213979816200743}
+  m_Layer: 0
+  m_Name: Contact Area
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4596213979816200743
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 165257964407758181}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 3532757997227702557}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3930615338106887926
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -62,18 +93,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: aa5fc3a87f89a27429f4cf15f9982f1a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4596213979816200743}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: aa5fc3a87f89a27429f4cf15f9982f1a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5333731097935256141}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: aa5fc3a87f89a27429f4cf15f9982f1a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 447413930493845881}
+      addedObject: {fileID: 685163252228678614}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: aa5fc3a87f89a27429f4cf15f9982f1a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 685163252228678614}
+      addedObject: {fileID: 1584345558296152086}
   m_SourcePrefab: {fileID: 100100000, guid: aa5fc3a87f89a27429f4cf15f9982f1a, type: 3}
+--- !u!4 &3532757997227702557 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: aa5fc3a87f89a27429f4cf15f9982f1a, type: 3}
+  m_PrefabInstance: {fileID: 3930615338106887926}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4201066815853241255 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: aa5fc3a87f89a27429f4cf15f9982f1a, type: 3}
@@ -101,33 +140,6 @@ NavMeshAgent:
   m_BaseOffset: -0.05
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &447413930493845881
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4201066815853241255}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66186f4bb69d9334383d5a6c9e317d23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  detectionRadius: 20
-  player: {fileID: 0}
-  detectionLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  useWaypoints: 0
-  waypoints: []
-  waypointTolerance: 1
-  detectPlayer: 1
-  detectBait: 1
-  baitTypeToDetect: 0
-  interactionRadius: 2
-  interactionLayer:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!95 &685163252228678614
 Animator:
   serializedVersion: 7
@@ -150,3 +162,33 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1584345558296152086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4201066815853241255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 080f43e571b579b4cacd69f05341cbd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useWaypoints: 0
+  path: {fileID: 0}
+  waypointTolerance: 1
+  detectionRadius: 10
+  detectPlayer: 1
+  detectBait: 1
+  preferredBait: 0
+  detectionLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  contactRadius: 2
+  chaseSpeed: 8
+  chaseAngularSpeed: 360
+  chaseAcceleration: 50
+  chaseDelay: 0
+  canLosePlayer: 0
+  destroyAfterLosing: 0
+  loseDistanceThreshold: 20

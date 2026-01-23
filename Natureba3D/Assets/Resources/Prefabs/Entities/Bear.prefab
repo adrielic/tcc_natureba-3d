@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1147942330115604135
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3360467483343373798}
+  m_Layer: 0
+  m_Name: Contact Area
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3360467483343373798
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147942330115604135}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 6501009603683482922}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &6751600315155978945
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -62,17 +93,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 322ee9c9ff0e486429bcadabc0525cb2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3360467483343373798}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 322ee9c9ff0e486429bcadabc0525cb2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8331390881161074595}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 322ee9c9ff0e486429bcadabc0525cb2, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1553747801067154396}
+      addedObject: {fileID: 1327676534919209703}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 322ee9c9ff0e486429bcadabc0525cb2, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1327676534919209703}
+      addedObject: {fileID: 8117909303981829263}
   m_SourcePrefab: {fileID: 100100000, guid: 322ee9c9ff0e486429bcadabc0525cb2, type: 3}
 --- !u!1 &5869291367821518736 stripped
 GameObject:
@@ -101,33 +135,6 @@ NavMeshAgent:
   m_BaseOffset: -0.05
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &1553747801067154396
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5869291367821518736}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea5e5560d2fa1a64ca4deabe972fce79, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  detectionRadius: 15
-  player: {fileID: 0}
-  detectionLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  useWaypoints: 0
-  waypoints: []
-  waypointTolerance: 1
-  detectPlayer: 1
-  detectBait: 1
-  baitTypeToDetect: 1
-  interactionRadius: 4
-  interactionLayer:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!95 &1327676534919209703
 Animator:
   serializedVersion: 7
@@ -150,3 +157,38 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8117909303981829263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5869291367821518736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 080f43e571b579b4cacd69f05341cbd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useWaypoints: 0
+  path: {fileID: 0}
+  waypointTolerance: 1
+  detectionRadius: 10
+  detectPlayer: 1
+  detectBait: 1
+  preferredBait: 1
+  detectionLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  contactRadius: 2
+  chaseSpeed: 8
+  chaseAngularSpeed: 360
+  chaseAcceleration: 50
+  chaseDelay: 2
+  canLosePlayer: 0
+  destroyAfterLosing: 0
+  loseDistanceThreshold: 20
+--- !u!4 &6501009603683482922 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 322ee9c9ff0e486429bcadabc0525cb2, type: 3}
+  m_PrefabInstance: {fileID: 6751600315155978945}
+  m_PrefabAsset: {fileID: 0}
