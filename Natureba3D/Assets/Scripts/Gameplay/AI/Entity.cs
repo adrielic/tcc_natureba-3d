@@ -4,66 +4,67 @@ using UnityEngine.AI;
 // Classe mãe de todos os animais
 public abstract class Entity : MonoBehaviour
 {
+    [Header("AI")]
+    [SerializeField] protected bool enable;
+    
     [Header("Roaming")]
-    [SerializeField] protected bool useWaypoints; // Apenas em animais que rodam uma área
     [SerializeField] protected Transform path; // Caminho da ronda deve ser o objeto pai de cada waypoint
-    [SerializeField] protected float waypointTolerance = 1f; // Distância mínima para o próximo waypoint
     protected Transform[] pathWaypoints;
-    protected int currentWaypoint;
+    protected int currentWaypointIndex;
+    protected float waypointTolerance = 1f; // Distância mínima para o próximo waypoint
+    protected bool useWaypoints = false; // Apenas em animais que rodam uma área
 
     [Header("Detection")]
-    [SerializeField] protected float detectionRadius = 10f;
-    [SerializeField] protected LayerMask detectionLayer; // Selecionar a layer Target no inspector
     [SerializeField] protected bool detectPlayer = true;
     [SerializeField] protected bool detectBait = false;
-    [SerializeField] protected Bait.BaitType preferredBait;
-    
+    [SerializeField] protected float detectionRadius = 10f;
+    [SerializeField] protected LayerMask detectionLayer; // Selecionar a layer Target no inspector
+    [SerializeField] protected Bait.BaitType preferredBaitType;
     protected Transform target;
 
     [Header("Contact")]
     [SerializeField] protected float contactRadius = 1f;
     [SerializeField] protected Transform contactArea;
-    protected bool baitTaken;
 
-    protected float initialSpeed;
-    protected float initialAngularSpeed;
-    protected float initialAcceleration;
+    protected float regularSpeed;
 
     protected NavMeshAgent agent;
     protected Animator animator;
 
-    protected virtual void Start()
+    protected virtual void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+    }
 
-        // Atribuindo o caminho do animal em tempo de execução
-        if (path != null)
+    protected virtual void Start()
+    {
+        // Importante para resetar a velocidade de um animal quando ele parar de perseguir o jogador
+        regularSpeed = agent.speed;
+
+        // Se o animal possuir um caminho atribuído no inspetor, cada waypoint parenteado ao caminho será adicionado ao array que representa os pontos de passagem da ronda
+        if (path == null) return;
+
+        pathWaypoints = new Transform[path.childCount];
+
+        for (int i = 0; i < path.childCount; i++)
         {
-            pathWaypoints = new Transform[path.childCount];
-
-            for (int i = 0; i < path.childCount; i++)
-            {
-                pathWaypoints[i] = path.GetChild(i);
-            }
+            pathWaypoints[i] = path.GetChild(i);
         }
 
-        // Importante para resetar as velocidades de um animal quando ele parar de perseguir o jogador
-        initialSpeed = agent.speed;
-        initialAngularSpeed = agent.angularSpeed;
-        initialAcceleration = agent.acceleration;
+        useWaypoints = true;
     }
 
     protected virtual void Update()
     {
-        // Daqui pra baixo, nada funciona se o animal já pegou uma isca
-        if (baitTaken) return;
+        // A IA do animal é desativada quando ele pega uma isca. Também possível desativar no inspetor (para testes)
+        if (!enable) return;
 
         DetectTarget();
         CheckContact();
 
         // Só fazer ronda se possui não possui um alvo, se usa waypoints e se o caminho tiver waypoints
-        if (target == null && useWaypoints && pathWaypoints.Length > 0)
+        if (useWaypoints && pathWaypoints.Length > 0 && target == null)
         {
             Roam();
         }
@@ -72,11 +73,11 @@ public abstract class Entity : MonoBehaviour
     // Comportamento de ronda garante que um waypoint seja sempre atribuído como destino, e procura o próximo waypoint
     protected virtual void Roam()
     {
-        agent.SetDestination(pathWaypoints[currentWaypoint].position); // Determinando o destino
+        agent.SetDestination(pathWaypoints[currentWaypointIndex].position); // Determinando o destino
 
         if (!agent.pathPending && agent.remainingDistance < waypointTolerance)
         {
-            currentWaypoint = (currentWaypoint + 1) % pathWaypoints.Length; // Escolhendo o próximo waypoint
+            currentWaypointIndex = (currentWaypointIndex + 1) % pathWaypoints.Length; // Escolhendo o próximo waypoint
         }
     }
 
@@ -93,7 +94,7 @@ public abstract class Entity : MonoBehaviour
                 return;
             }
 
-            if (detectBait && hit.TryGetComponent(out Bait bait) && bait.type == preferredBait && bait.isEnabled) // Encontrando uma isca ativa
+            if (detectBait && hit.TryGetComponent(out Bait bait) && bait.type == preferredBaitType && bait.isEnabled) // Encontrando uma isca ativa
             {
                 target = hit.transform;
                 return;
@@ -117,7 +118,7 @@ public abstract class Entity : MonoBehaviour
     // Quando o contato é efetuado. Já inclui a lógica de contato com a isca
     protected virtual void OnContact(Collider hit)
     {
-        if (detectBait && hit.TryGetComponent(out Bait bait) && bait.type == preferredBait) // Verificando contato com iscas
+        if (detectBait && hit.TryGetComponent(out Bait bait) && bait.type == preferredBaitType) // Verificando contato com iscas
         {
             TakeBait(hit);
         }
@@ -126,7 +127,7 @@ public abstract class Entity : MonoBehaviour
     // Ao pegar uma isca, apaga o alvo, reseta o caminho do Agent e para a animação de perseguição
     protected void TakeBait(Collider baitCollider)
     {
-        baitTaken = true;
+        enable = false;
         target = null;
         agent.ResetPath();
 
