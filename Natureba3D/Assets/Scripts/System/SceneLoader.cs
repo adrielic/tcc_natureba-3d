@@ -20,13 +20,10 @@ public class SceneLoader : MonoBehaviour
         Instance = this;
 
         DontDestroyOnLoad(gameObject);
-    }
 
-    void Start()
-    {
         animator = GetComponent<Animator>();
     }
-
+    
     public void LoadScene(int sceneIndex)
     {
         if (sceneIndex < 0 || sceneIndex >= SceneManager.sceneCountInBuildSettings)

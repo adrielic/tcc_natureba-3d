@@ -6,7 +6,7 @@ public class Cabin : Structure
     {
         if (itemInHands != null) return;
 
-        base.Use(player, null);
+        base.Use(player, itemInHands);
 
         if (GameManager.Instance.objectiveIsComplete)
         {

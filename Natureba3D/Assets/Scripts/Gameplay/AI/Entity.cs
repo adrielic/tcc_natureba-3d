@@ -5,8 +5,8 @@ using UnityEngine.AI;
 public abstract class Entity : MonoBehaviour
 {
     [Header("AI")]
-    [SerializeField] protected bool enable;
-    
+    [SerializeField] protected bool enable; // Decide se todo o comportamento da IA está ligado ou desligado
+
     [Header("Roaming")]
     [SerializeField] protected Transform path; // Caminho da ronda deve ser o objeto pai de cada waypoint
     protected Transform[] pathWaypoints;

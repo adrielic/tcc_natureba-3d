@@ -11,13 +11,20 @@ public class GameManager : MonoBehaviour
     public int requiredMedicine;
     [HideInInspector] public int foodCount = 0, waterCount = 0, medicineCount = 0;
     public bool objectiveIsComplete;
+    private int foodStep = 0;
+    private int baseFood, baseWater;
+    private float foodIncreasingThreshold = 0.25f;
+    private float sprintSecondsPerWater = 20f;
+    private float sprintTimeAccumulated;
 
     [Header("Level Countdown")]
-    public int levelTimeLimit;
+    public int timeLimit;
     public bool startCountdown = false;
     private Coroutine countdown;
+    private int levelDuration;
 
     [Header("System")]
+    [SerializeField] private PlayerMovement player;
     [SerializeField] private bool isGameOver;
     public bool isPaused;
     private bool isMapOpen;
@@ -35,6 +42,13 @@ public class GameManager : MonoBehaviour
         Instance = this;
 
         GameData.Save(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    void Start()
+    {
+        levelDuration = timeLimit;
+        baseFood = requiredFood;
+        baseWater = requiredWater;
     }
 
     void Update()
@@ -68,6 +82,8 @@ public class GameManager : MonoBehaviour
                 PauseGame(true);
             }
         }
+
+        UpdateRequiredWater();
     }
 
     public void CheckObjective(string objective)
@@ -103,11 +119,13 @@ public class GameManager : MonoBehaviour
 
     IEnumerator LevelCountdown()
     {
-        while (levelTimeLimit > 0)
+        while (levelDuration > 0)
         {
             yield return new WaitForSeconds(1);
 
-            levelTimeLimit--;
+            levelDuration--;
+
+            UpdateRequiredFood();
         }
 
         GameOver("Night");
@@ -147,6 +165,38 @@ public class GameManager : MonoBehaviour
         }
 
         Debug.Log($"The player is dead ({causeOfDeath}).");
+    }
+
+    void UpdateRequiredFood()
+    {
+        float percentLost = 1f - ((float)levelDuration / timeLimit);
+        int currentStep = Mathf.FloorToInt(percentLost / foodIncreasingThreshold);
+
+        if (currentStep > foodStep)
+        {
+            requiredFood = baseFood + currentStep;
+            foodStep = currentStep;
+            GameUIManager.Instance.UpdateObjetiveDisplay("food");
+            StartCoroutine(GameUIManager.Instance.ShowNotification("Você sente fome."));
+        }
+    }
+
+    void UpdateRequiredWater()
+    {
+        if (isPaused || isGameOver) return;
+
+        if (!player.IsSprinting) return;
+
+        sprintTimeAccumulated += Time.deltaTime;
+
+        int sprintSteps = Mathf.FloorToInt(sprintTimeAccumulated / sprintSecondsPerWater);
+
+        if (sprintSteps > 0)
+        {
+            requiredWater = baseWater + sprintSteps;
+            GameUIManager.Instance.UpdateObjetiveDisplay("water");
+            StartCoroutine(GameUIManager.Instance.ShowNotification("Você sente sede."));
+        }
     }
 
     public void PauseGame(bool showPausePanel)

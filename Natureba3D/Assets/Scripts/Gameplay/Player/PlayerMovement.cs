@@ -1,21 +1,29 @@
 using UnityEngine;
+using System;
 using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
-    [SerializeField] private CharacterController characterController;
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float gravity = -9.81f;
     [SerializeField] private float jumpForce = 2f;
     [SerializeField] private float sprintSpeed = 8f;
     private float currentMoveSpeed;
+    private bool isSprinting;
     private Vector3 velocity;
 
     [Header("Ground Checking")]
     [SerializeField] private Transform groundCheck;
     [SerializeField][Range(0.1f, 1f)] private float checkRadius = 0.2f;
     [SerializeField] private LayerMask groundMask;
+
+    private CharacterController characterController;
+
+    void Awake()
+    {
+        characterController = GetComponent<CharacterController>();
+    }
 
     void Start()
     {
@@ -26,30 +34,22 @@ public class PlayerMovement : MonoBehaviour
     {
         if (GameManager.Instance.isPaused) return;
 
-        if (IsGrounded() && velocity.y < 0)
+        bool sprintInput = Input.GetButton("Sprint");
+
+        if (sprintInput != isSprinting)
         {
-            velocity.y = -2f;
+            isSprinting = sprintInput;
         }
 
-        if (Input.GetButton("Sprint"))
-        {
-            currentMoveSpeed = sprintSpeed;
-        }
-        else
-        {
-            currentMoveSpeed = moveSpeed;
-        }
+        currentMoveSpeed = isSprinting ? sprintSpeed : moveSpeed;
 
         Move();
+        ApplyGravity();
 
         if (Input.GetButton("Jump") && IsGrounded())
         {
             Jump();
         }
-
-        velocity.y += gravity * Time.deltaTime;
-
-        characterController.Move(velocity * Time.deltaTime);
     }
 
     void Move()
@@ -67,10 +67,23 @@ public class PlayerMovement : MonoBehaviour
         velocity.y = Mathf.Sqrt(jumpForce * -2f * gravity);
     }
 
+    void ApplyGravity()
+    {
+        if (IsGrounded() && velocity.y < 0)
+        {
+            velocity.y = -2f;
+        }
+
+        velocity.y += gravity * Time.deltaTime;
+        characterController.Move(velocity * Time.deltaTime);
+    }
+
     bool IsGrounded()
     {
         return Physics.CheckSphere(groundCheck.position, checkRadius, groundMask);
     }
+
+    public bool IsSprinting => isSprinting;
 
     void OnDrawGizmosSelected()
     {

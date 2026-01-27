@@ -27,7 +27,7 @@ public class PlayerInteraction : MonoBehaviour
         {
             if (itemInHands == null)
             {
-                GrabItem(target);
+                PickupItem(target);
             }
         }
 
@@ -76,7 +76,7 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
-    void GrabItem(Interactable targetItem)
+    void PickupItem(Interactable targetItem)
     {
         if (itemInHands != null) return;
 

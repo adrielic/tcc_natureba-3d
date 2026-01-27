@@ -65,7 +65,7 @@ public class Hostile : Entity
             {
                 if (destroyAfterLosing)
                 {
-                    ShutDown(); // O enxame é destruído quando perde o jogador para dar a impressão de que se dispersou
+                    Destroy(gameObject); // O enxame é destruído quando perde o jogador para dar a impressão de que se dispersou
                 }
                 else
                 {
