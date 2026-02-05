@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class GameUIManager : MonoBehaviour
@@ -8,10 +9,10 @@ public class GameUIManager : MonoBehaviour
     [SerializeField] private GameObject hud;
     [SerializeField] private GameObject map;
     [SerializeField] private TMP_Text interactionTxt;
-    [SerializeField] private TMP_Text feedbackTxt;
-    [SerializeField] private TMP_Text foodTxt;
-    [SerializeField] private TMP_Text waterTxt;
-    [SerializeField] private TMP_Text medicineTxt;
+    [SerializeField] private TMP_Text notificationTxt;
+    [SerializeField] private Image foodBar;
+    [SerializeField] private Image waterBar;
+    [SerializeField] private Image medicineBar;
 
     [Header("Game Over")]
     [SerializeField] private GameObject gameOverPanel;
@@ -46,11 +47,11 @@ public class GameUIManager : MonoBehaviour
 
     public IEnumerator ShowNotification(string newText)
     {
-        feedbackTxt.text = newText;
+        notificationTxt.text = newText;
 
         yield return new WaitForSeconds(1);
 
-        feedbackTxt.text = null;
+        notificationTxt.text = null;
     }
 
     public void UpdateObjetiveDisplay(string objective)
@@ -58,18 +59,18 @@ public class GameUIManager : MonoBehaviour
         switch (objective)
         {
             case "food":
-                foodTxt.text = "Comida: " + GameManager.Instance.foodCount + "/" + GameManager.Instance.requiredFood;
+                foodBar.fillAmount = (float)GameManager.Instance.foodCount / GameManager.Instance.requiredFood;
                 break;
             case "water":
-                waterTxt.text = "Água: " + GameManager.Instance.waterCount + "/" + GameManager.Instance.requiredWater;
+                waterBar.fillAmount = (float)GameManager.Instance.waterCount / GameManager.Instance.requiredWater;
                 break;
             case "medicine":
-                medicineTxt.text = "Medicina: " + GameManager.Instance.medicineCount + "/" + GameManager.Instance.requiredMedicine;
+                medicineBar.fillAmount = (float)GameManager.Instance.medicineCount / GameManager.Instance.requiredMedicine;
                 break;
             case "none":
-                foodTxt.text = "Comida: " + GameManager.Instance.foodCount + "/" + GameManager.Instance.requiredFood;
-                waterTxt.text = "Água: " + GameManager.Instance.waterCount + "/" + GameManager.Instance.requiredWater;
-                medicineTxt.text = "Medicina: " + GameManager.Instance.medicineCount + "/" + GameManager.Instance.requiredMedicine;
+                foodBar.fillAmount = (float)GameManager.Instance.foodCount / GameManager.Instance.requiredFood;
+                waterBar.fillAmount = (float)GameManager.Instance.waterCount / GameManager.Instance.requiredWater;
+                medicineBar.fillAmount = (float)GameManager.Instance.medicineCount / GameManager.Instance.requiredMedicine;
                 break;
         }
     }
