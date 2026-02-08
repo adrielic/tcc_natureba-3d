@@ -85,6 +85,7 @@ public class GameUIManager : MonoBehaviour
     public void HandleMap(bool showMap)
     {
         map.SetActive(showMap);
+        HandleHUD(!showMap);
     }
 
     public void HandleHUD(bool showHUD)
