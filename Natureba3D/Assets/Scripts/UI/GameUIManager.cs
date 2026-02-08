@@ -13,6 +13,7 @@ public class GameUIManager : MonoBehaviour
     [SerializeField] private Image foodBar;
     [SerializeField] private Image waterBar;
     [SerializeField] private Image medicineBar;
+    [SerializeField] private Image staminaBar;
 
     [Header("Game Over")]
     [SerializeField] private GameObject gameOverPanel;
@@ -73,6 +74,11 @@ public class GameUIManager : MonoBehaviour
                 medicineBar.fillAmount = (float)GameManager.Instance.medicineCount / GameManager.Instance.requiredMedicine;
                 break;
         }
+    }
+    
+    public void UpdateStaminaBar(float currentValue, float maxValue)
+    {
+        staminaBar.fillAmount = currentValue / maxValue;
     }
 
     public void ShowGameOverPanel(string causeOfDeath, string newText)

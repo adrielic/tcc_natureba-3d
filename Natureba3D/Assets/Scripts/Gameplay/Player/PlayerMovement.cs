@@ -6,17 +6,24 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float sprintSpeed = 8f;
     [SerializeField] private float gravity = -9.81f;
     [SerializeField] private float jumpForce = 2f;
-    [SerializeField] private float sprintSpeed = 8f;
+
+    [Header("Stamina")]
+    [SerializeField] private float maxStamina = 100f;
+    [SerializeField] private float staminaDrainPerSecond = 20f;
+    [SerializeField] private float staminaRecoveryPerSecond = 10f;
+
+    private float currentStamina;
     private float currentMoveSpeed;
-    private bool isSprinting;
     private Vector3 velocity;
 
     [Header("Ground Checking")]
     [SerializeField] private Transform groundCheck;
     [SerializeField][Range(0.1f, 1f)] private float checkRadius = 0.2f;
     [SerializeField] private LayerMask groundMask;
+    [SerializeField] private LayerMask waterMask;
 
     private CharacterController characterController;
 
@@ -28,21 +35,14 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         currentMoveSpeed = moveSpeed;
+        currentStamina = maxStamina;
     }
 
     void Update()
     {
         if (GameManager.Instance.isPaused) return;
 
-        bool sprintInput = Input.GetButton("Sprint");
-
-        if (sprintInput != isSprinting)
-        {
-            isSprinting = sprintInput;
-        }
-
-        currentMoveSpeed = isSprinting ? sprintSpeed : moveSpeed;
-
+        Sprint();
         Move();
         ApplyGravity();
 
@@ -50,6 +50,8 @@ public class PlayerMovement : MonoBehaviour
         {
             Jump();
         }
+
+        GameUIManager.Instance.UpdateStaminaBar(currentStamina, maxStamina);
     }
 
     void Move()
@@ -58,8 +60,27 @@ public class PlayerMovement : MonoBehaviour
         float z = Input.GetAxis("Vertical");
 
         Vector3 direction = transform.right * x + transform.forward * z;
-
         characterController.Move(direction * currentMoveSpeed * Time.deltaTime);
+    }
+
+    void Sprint()
+    {
+        bool sprintInput = Input.GetButton("Sprint");
+
+        if (sprintInput && currentStamina > 0f)
+        {
+            currentMoveSpeed = sprintSpeed;
+
+            currentStamina -= staminaDrainPerSecond * Time.deltaTime;
+            currentStamina = Mathf.Clamp(currentStamina, 0f, maxStamina);
+        }
+        else
+        {
+            currentMoveSpeed = moveSpeed;
+
+            currentStamina += staminaRecoveryPerSecond * Time.deltaTime;
+            currentStamina = Mathf.Clamp(currentStamina, 0f, maxStamina);
+        }
     }
 
     void Jump()
@@ -83,7 +104,10 @@ public class PlayerMovement : MonoBehaviour
         return Physics.CheckSphere(groundCheck.position, checkRadius, groundMask);
     }
 
-    public bool IsSprinting => isSprinting;
+    bool onWater()
+    {
+        return Physics.CheckSphere(groundCheck.position, checkRadius, waterMask);
+    }
 
     void OnDrawGizmosSelected()
     {

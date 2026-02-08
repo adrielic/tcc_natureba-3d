@@ -106,16 +106,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14be1e3723f22664fae370f57dab09c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterController: {fileID: 2873454002769987176}
   moveSpeed: 5
+  sprintSpeed: 8
   gravity: -19.62
   jumpForce: 2
-  sprintSpeed: 8
+  maxStamina: 100
+  staminaDrainPerSecond: 20
+  staminaRecoveryPerSecond: 10
   groundCheck: {fileID: 8210529573159532140}
   checkRadius: 0.2
   groundMask:
     serializedVersion: 2
     m_Bits: 8
+  waterMask:
+    serializedVersion: 2
+    m_Bits: 16
 --- !u!114 &8533519883285162229
 MonoBehaviour:
   m_ObjectHideFlags: 0
