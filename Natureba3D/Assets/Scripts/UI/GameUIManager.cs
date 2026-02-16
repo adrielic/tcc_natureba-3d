@@ -18,6 +18,13 @@ public class GameUIManager : MonoBehaviour
     [Header("Game Over")]
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private TMP_Text deathMessageTxt;
+    [SerializeField] private Image gameOverBG;
+    [SerializeField] private Sprite gameOverDrowningBG;
+    [SerializeField] private Sprite gameOverAnimalBG;
+    [SerializeField] private Sprite gameOverNightBG;
+    [SerializeField] private Sprite gameOverFallingBG;
+    [SerializeField] private Sprite gameOverIntoxFishBG;
+    [SerializeField] private Sprite gameOverIntoxMushroomBG;
 
     [Header("Pause")]
     [SerializeField] private GameObject pausePanel;
@@ -75,7 +82,7 @@ public class GameUIManager : MonoBehaviour
                 break;
         }
     }
-    
+
     public void UpdateStaminaBar(float currentValue, float maxValue)
     {
         staminaBar.fillAmount = currentValue / maxValue;
@@ -83,9 +90,31 @@ public class GameUIManager : MonoBehaviour
 
     public void ShowGameOverPanel(string causeOfDeath, string newText)
     {
+        HandleHUD(false);
         gameOverPanel.SetActive(true);
         deathMessageTxt.text = newText;
-        HandleHUD(false);
+
+        switch (causeOfDeath)
+        {
+            case "Night":
+                gameOverBG.sprite = gameOverNightBG;
+                break;
+            case "Falling":
+                gameOverBG.sprite = gameOverFallingBG;
+                break;
+            case "Drowning":
+                gameOverBG.sprite = gameOverDrowningBG;
+                break;
+            case "Intoxication_Fish":
+                gameOverBG.sprite = gameOverIntoxFishBG;
+                break;
+            case "Intoxication_Mushroom":
+                gameOverBG.sprite = gameOverIntoxMushroomBG;
+                break;
+            case "Animal":
+                gameOverBG.sprite = gameOverAnimalBG;
+                break;
+        }
     }
 
     public void HandleMap(bool showMap)
