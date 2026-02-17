@@ -175,6 +175,7 @@ MonoBehaviour:
   meshRenderer: {fileID: 4462870572562857264}
   isLit: 0
   logs: {fileID: 127523676733394149}
+  timeToBurnOff: 15
 --- !u!23 &4462870572562857264 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 85c328cfd84c4f3469dfa5b9d3b5b6b4, type: 3}

@@ -1,9 +1,11 @@
+using System.Collections;
 using UnityEngine;
 
 public class Campfire : Structure
 {
     [SerializeField] private bool isLit = false;
     [SerializeField] private GameObject logs;
+    [SerializeField] private float timeToBurnOff;
 
     public override void Use(PlayerInteraction player, Interactable itemInHands)
     {
@@ -16,7 +18,8 @@ public class Campfire : Structure
             isLit = true;
             gameObject.name = "Campfire (Lit)";
             logs.SetActive(true);
-        
+            StartCoroutine(BurnOff());
+
             Destroy(itemInHands.gameObject);
             player.ClearHands();
         }
@@ -24,5 +27,13 @@ public class Campfire : Structure
         {
             fish.Cook();
         }
+    }
+
+    private IEnumerator BurnOff()
+    {
+        yield return new WaitForSeconds(timeToBurnOff);
+        isLit = false;
+        gameObject.name = "Campfire";
+        logs.SetActive(false);
     }
 }
