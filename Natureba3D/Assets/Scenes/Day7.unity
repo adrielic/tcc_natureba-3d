@@ -3432,10 +3432,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Beehive
       objectReference: {fileID: 0}
-    - target: {fileID: 551744702218137677, guid: d3f0c59194603c544906944d1460eb44, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 928832576948939511, guid: d3f0c59194603c544906944d1460eb44, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.8340544
@@ -26053,10 +26049,6 @@ PrefabInstance:
     - target: {fileID: 5869291367821518736, guid: 33187da05d73881469a316683d0007c6, type: 3}
       propertyPath: m_Name
       value: Bear
-      objectReference: {fileID: 0}
-    - target: {fileID: 5869291367821518736, guid: 33187da05d73881469a316683d0007c6, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6501009603683482922, guid: 33187da05d73881469a316683d0007c6, type: 3}
       propertyPath: m_LocalPosition.x
