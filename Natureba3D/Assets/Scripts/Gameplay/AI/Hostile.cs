@@ -97,7 +97,10 @@ public class Hostile : Entity
 
         if (hit.CompareTag("Player")) // Faz contato apenas com o jogador
         {
+            if (killedPlayer) return;
+
             GameManager.Instance.GameOver("Animal");
+            killedPlayer = true;
 
             Debug.Log($"{gameObject.name} has hit the player.");
         }

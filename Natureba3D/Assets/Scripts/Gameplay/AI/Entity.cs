@@ -25,6 +25,7 @@ public abstract class Entity : MonoBehaviour
     [Header("Contact")]
     [SerializeField] protected float contactRadius = 1f;
     [SerializeField] protected Transform contactArea;
+    protected bool killedPlayer;
 
     protected float regularSpeed;
 

@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                PauseGame(true);
+                PauseGame(showPausePanel: true);
             }
         }
     }
@@ -125,7 +125,7 @@ public class GameManager : MonoBehaviour
     public void GameOver(string causeOfDeath)
     {
         isGameOver = true;
-        PauseGame(false);
+        PauseGame(showPausePanel: false);
 
         switch (causeOfDeath)
         {

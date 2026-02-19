@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class ImprovisedBridge : Structure
 {
-    Animator animator;
+    [SerializeField] private GameObject invisibleWall;
+    private Animator animator;
 
     void Start()
     {
@@ -16,5 +17,6 @@ public class ImprovisedBridge : Structure
         base.Use(player, null);
 
         animator.SetTrigger("Kick");
+        invisibleWall.SetActive(false);
     }
 }
