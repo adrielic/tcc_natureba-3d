@@ -40,6 +40,31 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         levelDuration = timeLimit;
+
+        switch (SceneManager.GetActiveScene().name)
+        {
+            case "Day1":
+                GameUIManager.Instance.UpdateTitle("Dia 1", "Uma nova vida.");
+                break;
+            case "Day2":
+                GameUIManager.Instance.UpdateTitle("Dia 2", "Saco vazio não para em pé.");
+                break;
+            case "Day3":
+                GameUIManager.Instance.UpdateTitle("Dia 3", "Quem procura, acha.");
+                break;
+            case "Day4":
+                GameUIManager.Instance.UpdateTitle("Dia 4", "Não me sinto muito bem.");
+                break;
+            case "Day5":
+                GameUIManager.Instance.UpdateTitle("Dia 5", "Natureza vs. Humano.");
+                break;
+            case "Day6":
+                GameUIManager.Instance.UpdateTitle("Dia 6", "Escassez");
+                break;
+            case "Day7":
+                GameUIManager.Instance.UpdateTitle("Dia 7", "Na natureza selvagem.");
+                break;
+        }
     }
 
     void Update()
@@ -92,7 +117,7 @@ public class GameManager : MonoBehaviour
 
         GameUIManager.Instance.UpdateObjetiveDisplay(objective);
 
-        if (foodCount == requiredFood && waterCount == requiredWater && medicineCount == requiredMedicine)
+        if (foodCount >= requiredFood && waterCount >= requiredWater && medicineCount >= requiredMedicine)
         {
             objectiveIsComplete = true;
         }
@@ -102,16 +127,8 @@ public class GameManager : MonoBehaviour
     {
         int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
 
-        if (nextSceneIndex >= SceneManager.sceneCount)
-        {
-            LevelLoader.Instance.LoadLevel(0);
-            Debug.Log($"Returning to Main Menu.");
-        }
-        else
-        {
-            LevelLoader.Instance.LoadLevel(nextSceneIndex);
-            Debug.Log($"Proceeding to next level (Day {nextSceneIndex}).");
-        }  
+        LevelLoader.Instance.LoadLevel(nextSceneIndex);
+        Debug.Log($"Proceeding to next level (Day {nextSceneIndex}).");
     }
 
     IEnumerator LevelCountdown()

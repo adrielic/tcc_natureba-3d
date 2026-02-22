@@ -5,7 +5,7 @@ public class MainMenuScreen : MonoBehaviour
 {
     public void Play()
     {
-        SceneManager.LoadScene(GameData.Load());
+        LevelLoader.Instance.LoadLevel(GameData.Load());
     }
 
     public void Quit()

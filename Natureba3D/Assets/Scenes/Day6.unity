@@ -7643,6 +7643,7 @@ Transform:
   - {fileID: 1294683975}
   - {fileID: 1223810734}
   - {fileID: 1330351196}
+  - {fileID: 1941868127}
   - {fileID: 668056845}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12607,7 +12608,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1261280242}
     m_Modifications:
     - target: {fileID: 1748777500984395255, guid: b800cb728977e4a47970c568c4bed4a5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12627,15 +12628,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1748777500984395255, guid: b800cb728977e4a47970c568c4bed4a5, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1748777500984395255, guid: b800cb728977e4a47970c568c4bed4a5, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1748777500984395255, guid: b800cb728977e4a47970c568c4bed4a5, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1748777500984395255, guid: b800cb728977e4a47970c568c4bed4a5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -12658,6 +12659,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b800cb728977e4a47970c568c4bed4a5, type: 3}
+--- !u!4 &1941868127 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1748777500984395255, guid: b800cb728977e4a47970c568c4bed4a5, type: 3}
+  m_PrefabInstance: {fileID: 1941868126}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1942212872
 GameObject:
   m_ObjectHideFlags: 0
@@ -15521,7 +15527,6 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1941868126}
   - {fileID: 1261280242}
   - {fileID: 716948284}
   - {fileID: 1928785110}

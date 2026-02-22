@@ -46,4 +46,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnWolf: 1
   timeOfDayToSpawn: 75
+  timeOfDayToDespawn: 30
   wolfObjects: []

@@ -1,4 +1,6 @@
 using UnityEngine;
+using System;
+using System.Collections;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -6,6 +8,7 @@ public class PlayerInteraction : MonoBehaviour
     public Camera playerCamera;
     [SerializeField][Range(1f, 10f)] private float interactionRange = 3f;
     [SerializeField] private Transform handsTransform;
+    [SerializeField] private Animator handAnimator;
     private Interactable itemInHands;
 
     void Update()
@@ -40,19 +43,28 @@ public class PlayerInteraction : MonoBehaviour
         // Consumir
         if (Input.GetButtonDown("Consume") && itemInHands is Consumable consumable)
         {
-            consumable.Consume(this);
+            StartCoroutine(
+                CallAction("Consume", 0.25f, () =>
+                {
+                    if (consumable != null)
+                        consumable.Consume(this);
+                })
+            );
         }
 
         // Usar
         if (Input.GetButtonDown("Use"))
         {
-            if (itemInHands != null)
+            if (itemInHands != null && target != null)
             {
                 // Usando um item em outro
-                if (target != null)
-                {
-                    target.Use(this, itemInHands);
-                }
+                StartCoroutine(
+                    CallAction("Use", 0.25f, () =>
+                    {
+                        if (target != null && itemInHands != null)
+                            target.Use(this, itemInHands);
+                    })
+                );
             }
             else if (itemInHands == null && target != null)
             {
@@ -90,13 +102,22 @@ public class PlayerInteraction : MonoBehaviour
 
         Interactable dropped = itemInHands;
         dropped.OnDrop(playerCamera.transform.forward);
-        
+
         ClearHands();
     }
 
     public void ClearHands()
     {
         itemInHands = null;
+    }
+
+    IEnumerator CallAction(string triggerName, float delay, Action action)
+    {
+        handAnimator.SetTrigger(triggerName);
+
+        yield return new WaitForSeconds(delay);
+
+        action?.Invoke();
     }
 
     void OnDrawGizmosSelected()

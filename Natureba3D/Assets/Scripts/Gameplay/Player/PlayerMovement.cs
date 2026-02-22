@@ -25,8 +25,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask waterMask;
 
     [Header("Movement Particles")]
-    //[SerializeField] private ParticleSystem waterParticles;
     [SerializeField] private GameObject waterParticles;
+
+    [Header("Movement Animation")]
+    [SerializeField] private Animator animator;
 
     private CharacterController characterController;
 
@@ -66,11 +68,17 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 direction = transform.right * x + transform.forward * z;
         characterController.Move(direction * currentMoveSpeed * Time.deltaTime);
+
+        bool hasMovementInput = direction.magnitude > 0.1f;
+        bool isSprinting = animator.GetBool("IsSprinting");
+
+        animator.SetBool("IsWalking", hasMovementInput && !isSprinting && IsGrounded());
     }
 
     void Sprint()
     {
         bool sprintInput = Input.GetButton("Sprint");
+        animator.SetBool("IsSprinting", sprintInput && IsGrounded());
 
         if (sprintInput && currentStamina > 0f)
         {

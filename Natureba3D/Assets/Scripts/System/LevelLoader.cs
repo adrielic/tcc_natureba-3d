@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelLoader : MonoBehaviour
 {
-    Animator animator;
+    [SerializeField] private Animator animator;
     public float delay;
 
     public static LevelLoader Instance { get; private set; }
@@ -18,10 +18,6 @@ public class LevelLoader : MonoBehaviour
         }
 
         Instance = this;
-
-        DontDestroyOnLoad(gameObject);
-
-        animator = GetComponent<Animator>();
     }
     
     public void LoadLevel(int sceneIndex)
@@ -37,6 +33,8 @@ public class LevelLoader : MonoBehaviour
 
     IEnumerator PlayTransition(int sceneIndex)
     {
+        animator.SetTrigger("Play");
+
         yield return new WaitForSecondsRealtime(delay);
 
         SceneManager.LoadScene(sceneIndex);

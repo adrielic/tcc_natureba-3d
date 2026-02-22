@@ -29,6 +29,10 @@ public class GameUIManager : MonoBehaviour
     [Header("Pause")]
     [SerializeField] private GameObject pausePanel;
 
+    [Header("Level Intro")]
+    [SerializeField] private TMP_Text titleTxt;
+    [SerializeField] private TMP_Text subtitleTxt;
+
     public static GameUIManager Instance { get; private set; }
 
     void Awake()
@@ -142,6 +146,30 @@ public class GameUIManager : MonoBehaviour
     {
         pausePanel.SetActive(showPausePanel);
         HandleHUD(!showPausePanel);
+    }
+
+    public void UpdateTitle(string newTitle, string newSubtitle)
+    {
+        // titleTxt.text = newTitle;
+        // subtitleTxt.text = newSubtitle;
+        StartCoroutine(WriteText(newTitle, newSubtitle));
+    }
+
+    IEnumerator WriteText(string mainText, string altText)
+    {
+        foreach (char word in mainText)
+        {
+            yield return new WaitForSecondsRealtime(0.1f);
+
+            titleTxt.text += word;
+        }
+        
+        foreach (char word in altText)
+        {
+            yield return new WaitForSecondsRealtime(0.1f);
+
+            subtitleTxt.text += word;
+        }
     }
 
     public void Resume()
