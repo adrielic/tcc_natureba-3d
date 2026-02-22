@@ -152,11 +152,11 @@ public class GameUIManager : MonoBehaviour
     public void Restart()
     {
         GameManager.Instance.UnpauseGame();
-        SceneLoader.Instance.LoadScene(GameData.Load());
+        LevelLoader.Instance.LoadLevel(GameData.Load());
     }
 
     public void ReturnToMenu()
     {
-        SceneLoader.Instance.LoadScene(0);
+        LevelLoader.Instance.LoadLevel(0);
     }
 }

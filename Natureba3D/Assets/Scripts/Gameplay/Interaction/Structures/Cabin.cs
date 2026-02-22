@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class Cabin : Structure
 {
     public override void Use(PlayerInteraction player, Interactable itemInHands)

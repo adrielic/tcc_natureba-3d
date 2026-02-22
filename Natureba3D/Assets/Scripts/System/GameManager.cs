@@ -1,7 +1,4 @@
-using System;
 using System.Collections;
-using Microsoft.Unity.VisualStudio.Editor;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -104,9 +101,17 @@ public class GameManager : MonoBehaviour
     public void FinishLevel()
     {
         int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
-        SceneLoader.Instance.LoadScene(nextSceneIndex);
 
-        Debug.Log($"Proceeding to next level (Day {nextSceneIndex}).");
+        if (nextSceneIndex >= SceneManager.sceneCount)
+        {
+            LevelLoader.Instance.LoadLevel(0);
+            Debug.Log($"Returning to Main Menu.");
+        }
+        else
+        {
+            LevelLoader.Instance.LoadLevel(nextSceneIndex);
+            Debug.Log($"Proceeding to next level (Day {nextSceneIndex}).");
+        }  
     }
 
     IEnumerator LevelCountdown()

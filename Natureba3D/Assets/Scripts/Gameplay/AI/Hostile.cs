@@ -1,5 +1,3 @@
-using System.Net.Sockets;
-using Mono.Cecil;
 using UnityEngine;
 
 // Classe dos animais hostis ao jogador
@@ -65,7 +63,7 @@ public class Hostile : Entity
             {
                 if (destroyAfterLosing)
                 {
-                    Destroy(gameObject); // O enxame é destruído quando perde o jogador para dar a impressão de que se dispersou
+                    Destroy(gameObject, 5); // O enxame é destruído quando perde o jogador para dar a impressão de que se dispersou
                 }
                 else
                 {

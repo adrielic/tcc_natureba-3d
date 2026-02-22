@@ -2,12 +2,12 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneLoader : MonoBehaviour
+public class LevelLoader : MonoBehaviour
 {
     Animator animator;
-    public float transitionTime;
+    public float delay;
 
-    public static SceneLoader Instance { get; private set; }
+    public static LevelLoader Instance { get; private set; }
 
     void Awake()
     {
@@ -24,7 +24,7 @@ public class SceneLoader : MonoBehaviour
         animator = GetComponent<Animator>();
     }
     
-    public void LoadScene(int sceneIndex)
+    public void LoadLevel(int sceneIndex)
     {
         if (sceneIndex < 0 || sceneIndex >= SceneManager.sceneCountInBuildSettings)
         {
@@ -32,12 +32,12 @@ public class SceneLoader : MonoBehaviour
             return;
         }
 
-        StartCoroutine(PlaySceneTransition(sceneIndex));
+        StartCoroutine(PlayTransition(sceneIndex));
     }
 
-    IEnumerator PlaySceneTransition(int sceneIndex)
+    IEnumerator PlayTransition(int sceneIndex)
     {
-        yield return new WaitForSecondsRealtime(transitionTime);
+        yield return new WaitForSecondsRealtime(delay);
 
         SceneManager.LoadScene(sceneIndex);
     }

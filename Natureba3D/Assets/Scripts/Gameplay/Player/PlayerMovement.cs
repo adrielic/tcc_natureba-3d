@@ -1,6 +1,5 @@
 using UnityEngine;
 using System;
-using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -24,6 +23,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField][Range(0.1f, 1f)] private float checkRadius = 0.2f;
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private LayerMask waterMask;
+
+    [Header("Movement Particles")]
+    //[SerializeField] private ParticleSystem waterParticles;
+    [SerializeField] private GameObject waterParticles;
 
     private CharacterController characterController;
 
@@ -50,6 +53,8 @@ public class PlayerMovement : MonoBehaviour
         {
             Jump();
         }
+
+        waterParticles.SetActive(OnWater());
 
         GameUIManager.Instance.UpdateStaminaBar(currentStamina, maxStamina);
     }
@@ -104,7 +109,7 @@ public class PlayerMovement : MonoBehaviour
         return Physics.CheckSphere(groundCheck.position, checkRadius, groundMask);
     }
 
-    bool onWater()
+    bool OnWater()
     {
         return Physics.CheckSphere(groundCheck.position, checkRadius, waterMask);
     }

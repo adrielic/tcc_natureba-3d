@@ -65,7 +65,7 @@ public class PlayerInteraction : MonoBehaviour
         {
             Interactable interactable = target.GetComponent<Interactable>();
 
-            if (interactable != null && itemInHands == null)
+            if (interactable != null)
             {
                 GameUIManager.Instance.ShowInteraction(interactable.interactionText);
             }

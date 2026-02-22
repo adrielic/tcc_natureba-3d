@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class Medicine : Consumable
 {
     public override void Consume(PlayerInteraction player)
