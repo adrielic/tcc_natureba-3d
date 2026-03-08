@@ -1268,7 +1268,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4725258067083210140, guid: 381adf1fc84acef449368b14d2d31d6f, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 381adf1fc84acef449368b14d2d31d6f, type: 3}
@@ -14228,7 +14229,8 @@ PrefabInstance:
       value: Game Canvas
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8224461693618208074, guid: 645335fdcd13d0941adf38c4f3bbc35c, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 645335fdcd13d0941adf38c4f3bbc35c, type: 3}

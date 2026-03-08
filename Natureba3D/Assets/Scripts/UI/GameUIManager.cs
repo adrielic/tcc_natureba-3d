@@ -8,6 +8,7 @@ public class GameUIManager : MonoBehaviour
     [Header("HUD")]
     [SerializeField] private GameObject hud;
     [SerializeField] private GameObject map;
+    [SerializeField] private TMP_Text journalTxt;
     [SerializeField] private TMP_Text interactionTxt;
     [SerializeField] private TMP_Text notificationTxt;
     [SerializeField] private Image foodBar;
@@ -85,6 +86,11 @@ public class GameUIManager : MonoBehaviour
                 medicineBar.fillAmount = (float)GameManager.Instance.medicineCount / GameManager.Instance.requiredMedicine;
                 break;
         }
+    }
+
+    public void UpdateJournalText(string newText)
+    {
+        journalTxt.text = newText;
     }
 
     public void UpdateStaminaBar(float currentValue, float maxValue)

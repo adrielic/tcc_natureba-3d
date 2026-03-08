@@ -1,15 +1,20 @@
 using UnityEngine;
 using System;
 using System.Collections;
+using UnityEditor.Search;
 
 public class PlayerInteraction : MonoBehaviour
 {
     [Header("Configuration")]
     public Camera playerCamera;
+    public Animator cameraAnimator;
     [SerializeField][Range(1f, 10f)] private float interactionRange = 3f;
     [SerializeField] private Transform handsTransform;
     [SerializeField] private Animator handAnimator;
     private Interactable itemInHands;
+
+    [Header("VFX")]
+    public GameObject vfx;
 
     void Update()
     {
@@ -118,6 +123,21 @@ public class PlayerInteraction : MonoBehaviour
         yield return new WaitForSeconds(delay);
 
         action?.Invoke();
+    }
+
+    public void Hallucinate()
+    {
+        if (vfx.TryGetComponent<Animator>(out var vfxAnimator))
+        {
+            vfxAnimator.SetTrigger("Hallucinate");
+            Debug.Log("vfx ok");
+        }
+
+        if (playerCamera.TryGetComponent<Animator>(out var cameraAnimator))
+        {
+            cameraAnimator.SetTrigger("Hallucinate");
+            Debug.Log("camera ok");
+        }
     }
 
     void OnDrawGizmosSelected()
