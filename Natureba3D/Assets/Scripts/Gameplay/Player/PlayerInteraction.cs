@@ -1,7 +1,6 @@
 using UnityEngine;
 using System;
 using System.Collections;
-using UnityEditor.Search;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -14,7 +13,13 @@ public class PlayerInteraction : MonoBehaviour
     private Interactable itemInHands;
 
     [Header("VFX")]
-    public GameObject vfx;
+    public GameObject vfxDirector;
+
+    [Header("SFX")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip pickupClip;
+    [SerializeField] private AudioClip dropClip;
+    [SerializeField] private AudioClip useClip;
 
     void Update()
     {
@@ -70,6 +75,8 @@ public class PlayerInteraction : MonoBehaviour
                             target.Use(this, itemInHands);
                     })
                 );
+
+                AudioManager.Instance.PlayOneShot(useClip, audioSource);
             }
             else if (itemInHands == null && target != null)
             {
@@ -99,6 +106,7 @@ public class PlayerInteraction : MonoBehaviour
 
         itemInHands = targetItem;
         targetItem.OnPickup(handsTransform);
+        AudioManager.Instance.PlayOneShot(pickupClip, audioSource);
     }
 
     void DropItem()
@@ -109,6 +117,7 @@ public class PlayerInteraction : MonoBehaviour
         dropped.OnDrop(playerCamera.transform.forward);
 
         ClearHands();
+        AudioManager.Instance.PlayOneShot(dropClip, audioSource);
     }
 
     public void ClearHands()
@@ -127,7 +136,7 @@ public class PlayerInteraction : MonoBehaviour
 
     public void Hallucinate()
     {
-        if (vfx.TryGetComponent<Animator>(out var vfxAnimator))
+        if (vfxDirector.TryGetComponent<Animator>(out var vfxAnimator))
         {
             vfxAnimator.SetTrigger("Hallucinate");
             Debug.Log("vfx ok");

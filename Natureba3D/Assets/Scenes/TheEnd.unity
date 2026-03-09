@@ -10258,6 +10258,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1533069964}
+  - {fileID: 1469805236}
   - {fileID: 1554150571}
   - {fileID: 1441787903}
   m_Father: {fileID: 0}
@@ -11793,6 +11794,44 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 3909343320910794213, guid: 342a4015ea167b34985f8e7ed17df887, type: 3}
   m_PrefabInstance: {fileID: 1458366131}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1469805235
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1289408977}
+    m_Modifications:
+    - target: {fileID: 1392985485768273401, guid: f3cf424a4991198448a5d8c0a43b90d8, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: 7e9502fcdc0220d41b3ecc1f3f7602e5, type: 3}
+    - target: {fileID: 4123250084661770709, guid: f3cf424a4991198448a5d8c0a43b90d8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4123250084661770709, guid: f3cf424a4991198448a5d8c0a43b90d8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4123250084661770709, guid: f3cf424a4991198448a5d8c0a43b90d8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6566522155294027546, guid: f3cf424a4991198448a5d8c0a43b90d8, type: 3}
+      propertyPath: m_Name
+      value: Audio Manager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f3cf424a4991198448a5d8c0a43b90d8, type: 3}
+--- !u!4 &1469805236 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4123250084661770709, guid: f3cf424a4991198448a5d8c0a43b90d8, type: 3}
+  m_PrefabInstance: {fileID: 1469805235}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1476729685
 GameObject:

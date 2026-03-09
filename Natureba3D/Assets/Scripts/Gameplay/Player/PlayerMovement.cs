@@ -30,6 +30,11 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement Animation")]
     [SerializeField] private Animator animator;
 
+    [Header("SFX")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip groundFootstepsClip;
+    [SerializeField] private AudioClip waterFootstepsClip;
+
     private CharacterController characterController;
 
     void Awake()
@@ -120,6 +125,18 @@ public class PlayerMovement : MonoBehaviour
     bool OnWater()
     {
         return Physics.CheckSphere(groundCheck.position, checkRadius, waterMask);
+    }
+
+    public void PlayFootstepsSFX()
+    {
+        if (IsGrounded() && !OnWater())
+        {
+            AudioManager.Instance.PlayOneShot(groundFootstepsClip, audioSource);
+        }
+        else if (OnWater())
+        {
+            AudioManager.Instance.PlayOneShot(waterFootstepsClip, audioSource);
+        }
     }
 
     void OnDrawGizmosSelected()
