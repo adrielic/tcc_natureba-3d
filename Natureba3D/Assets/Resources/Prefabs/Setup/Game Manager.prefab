@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4904464195141785855}
   - component: {fileID: 1449006847172852455}
+  - component: {fileID: 3692656022610012825}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: GameController
@@ -55,3 +56,15 @@ MonoBehaviour:
   startCountdown: 1
   isGameOver: 0
   isPaused: 0
+--- !u!114 &3692656022610012825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6463541493085572365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf8a78cdd34dd0949829d5d84083da07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

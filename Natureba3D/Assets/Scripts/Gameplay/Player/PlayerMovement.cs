@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float maxStamina = 100f;
     [SerializeField] private float staminaDrainPerSecond = 20f;
     [SerializeField] private float staminaRecoveryPerSecond = 10f;
-
+    private float staminaRegenDelayTimer;
     private float currentStamina;
     private float currentMoveSpeed;
     private Vector3 velocity;
@@ -83,18 +83,35 @@ public class PlayerMovement : MonoBehaviour
     void Sprint()
     {
         bool sprintInput = Input.GetButton("Sprint");
-        animator.SetBool("IsSprinting", sprintInput && IsGrounded());
 
         if (sprintInput && currentStamina > 0f)
         {
             currentMoveSpeed = sprintSpeed;
+            animator.SetBool("IsSprinting", IsGrounded());
 
             currentStamina -= staminaDrainPerSecond * Time.deltaTime;
             currentStamina = Mathf.Clamp(currentStamina, 0f, maxStamina);
+
+            if (currentStamina <= 0f)
+            {
+                staminaRegenDelayTimer = 1f;
+            }
         }
         else
         {
             currentMoveSpeed = moveSpeed;
+            animator.SetBool("IsSprinting", false);
+
+            if (currentStamina <= 0f && sprintInput)
+            {
+                return;
+            }
+
+            if (staminaRegenDelayTimer > 0f)
+            {
+                staminaRegenDelayTimer -= Time.deltaTime;
+                return;
+            }
 
             currentStamina += staminaRecoveryPerSecond * Time.deltaTime;
             currentStamina = Mathf.Clamp(currentStamina, 0f, maxStamina);
@@ -131,11 +148,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (IsGrounded() && !OnWater())
         {
-            AudioManager.Instance.PlayOneShot(groundFootstepsClip, audioSource);
+            AudioManager.Instance.PlaySFX(groundFootstepsClip, audioSource);
         }
         else if (OnWater())
         {
-            AudioManager.Instance.PlayOneShot(waterFootstepsClip, audioSource);
+            AudioManager.Instance.PlaySFX(waterFootstepsClip, audioSource);
         }
     }
 

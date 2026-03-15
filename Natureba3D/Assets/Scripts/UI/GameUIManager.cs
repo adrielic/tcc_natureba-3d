@@ -169,7 +169,7 @@ public class GameUIManager : MonoBehaviour
 
             titleTxt.text += word;
         }
-        
+
         foreach (char word in altText)
         {
             yield return new WaitForSecondsRealtime(0.1f);

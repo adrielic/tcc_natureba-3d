@@ -17,15 +17,10 @@ public class AudioManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void PlayOneShot(AudioClip clip, AudioSource source)
+    public void PlaySFX(AudioClip clip, AudioSource source)
     {
         if (clip == null || source == null) return;
 
         source.PlayOneShot(clip);
-    }
-
-    public void HandleAudio()
-    {
-
     }
 }

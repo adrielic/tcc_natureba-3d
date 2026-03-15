@@ -7,22 +7,28 @@ public class WolfSpawner : MonoBehaviour
     [SerializeField] private float timeOfDayToSpawn;
     [SerializeField] private float timeOfDayToDespawn;
     [SerializeField] private GameObject[] wolfObjects;
+    [SerializeField] private GameObject sfxObject;
 
     void Update()
     {
-        if (SkyboxCycleManager.Instance.CycleProgress >= timeOfDayToSpawn)
+        if (!spawnWolf) return;
+
+        float cycle = SkyboxCycleManager.Instance.CycleProgress;
+
+        if (cycle >= timeOfDayToSpawn)
         {
             foreach (GameObject obj in wolfObjects)
             {
                 obj.SetActive(true);
+                sfxObject.SetActive(true);
             }
         }
-        else if (SkyboxCycleManager.Instance.CycleProgress >= timeOfDayToDespawn)
+        else if (cycle >= timeOfDayToDespawn)
         {
             foreach (GameObject obj in wolfObjects)
             {
                 obj.SetActive(false);
             }
-        } 
+        }
     }
 }

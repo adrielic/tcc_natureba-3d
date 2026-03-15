@@ -76,7 +76,7 @@ public class PlayerInteraction : MonoBehaviour
                     })
                 );
 
-                AudioManager.Instance.PlayOneShot(useClip, audioSource);
+                AudioManager.Instance.PlaySFX(useClip, audioSource);
             }
             else if (itemInHands == null && target != null)
             {
@@ -106,7 +106,7 @@ public class PlayerInteraction : MonoBehaviour
 
         itemInHands = targetItem;
         targetItem.OnPickup(handsTransform);
-        AudioManager.Instance.PlayOneShot(pickupClip, audioSource);
+        AudioManager.Instance.PlaySFX(pickupClip, audioSource);
     }
 
     void DropItem()
@@ -117,7 +117,7 @@ public class PlayerInteraction : MonoBehaviour
         dropped.OnDrop(playerCamera.transform.forward);
 
         ClearHands();
-        AudioManager.Instance.PlayOneShot(dropClip, audioSource);
+        AudioManager.Instance.PlaySFX(dropClip, audioSource);
     }
 
     public void ClearHands()
