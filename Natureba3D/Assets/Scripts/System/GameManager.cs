@@ -1,4 +1,5 @@
 using System.Collections;
+using Borodar.FarlandSkies.LowPoly;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -96,6 +97,21 @@ public class GameManager : MonoBehaviour
             else
             {
                 PauseGame(showPausePanel: true);
+            }
+        }
+
+        if (SkyboxCycleManager.Instance.CycleProgress > 75 || SkyboxCycleManager.Instance.CycleProgress < 30)
+        {
+            if (AudioManager.Instance.CurrentTrack != AudioManager.MusicTrack.Night)
+            {
+                AudioManager.Instance.SwitchTrack(AudioManager.MusicTrack.Night);         
+            }
+        }
+        else if (SkyboxCycleManager.Instance.CycleProgress >= 30 && SkyboxCycleManager.Instance.CycleProgress <= 75)
+        {
+            if (AudioManager.Instance.CurrentTrack != AudioManager.MusicTrack.Day)
+            {
+                AudioManager.Instance.SwitchTrack(AudioManager.MusicTrack.Day);
             }
         }
     }

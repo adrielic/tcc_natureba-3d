@@ -175,6 +175,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d86b1bbeb208b2b4eb32d9a2aceffb95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  musicSource: {fileID: 1392985485768273401}
+  dayTrack: {fileID: 8300000, guid: aba23dd0eaa2e9844b4fd87f12ba0846, type: 3}
+  nightTrack: {fileID: 8300000, guid: d7d1ea4681d1d024883fd1521028e469, type: 3}
+  CurrentTrack: 0
 --- !u!1 &8194948710063066860
 GameObject:
   m_ObjectHideFlags: 0
