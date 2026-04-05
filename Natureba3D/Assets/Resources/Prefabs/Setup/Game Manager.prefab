@@ -52,7 +52,7 @@ MonoBehaviour:
   waterCount: 0
   medicineCount: 0
   objectiveIsComplete: 0
-  timeLimit: 240
+  timeLimit: 480
   startCountdown: 1
   isGameOver: 0
   isPaused: 0
