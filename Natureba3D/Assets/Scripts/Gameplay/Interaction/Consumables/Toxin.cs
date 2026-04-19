@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class Toxin : Consumable
 {
-    [SerializeField] private enum ToxinEffects { Death, Hallucination };
-    [SerializeField] ToxinEffects effect;
+    private enum ToxinEffects { Death, Hallucination };
+    [SerializeField] private ToxinEffects effect;
 
     public override void Consume(PlayerInteraction player)
     {

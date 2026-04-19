@@ -185,7 +185,7 @@ public class GameUIManager : MonoBehaviour
 
     public void Restart()
     {
-        GameManager.Instance.UnpauseGame();
+        Time.timeScale = 1;
         LevelLoader.Instance.LoadLevel(GameData.Load());
     }
 
