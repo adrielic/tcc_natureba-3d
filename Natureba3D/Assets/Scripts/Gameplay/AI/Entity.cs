@@ -89,6 +89,8 @@ public abstract class Entity : MonoBehaviour
 
         foreach (Collider hit in hits)
         {
+            if (hit.gameObject == gameObject) return;
+
             if (detectPlayer && hit.CompareTag("Player")) // Encontrando jogador
             {
                 target = hit.transform;
