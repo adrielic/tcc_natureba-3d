@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class EndScreen : MonoBehaviour
 {
@@ -31,7 +30,5 @@ public class EndScreen : MonoBehaviour
     IEnumerator RollCredits()
     {
         yield return new WaitForSecondsRealtime(endCreditsDelay);
-
-        animator.SetTrigger("Play");
     }
 }

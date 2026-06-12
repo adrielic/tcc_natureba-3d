@@ -214,4 +214,9 @@ public class GameManager : MonoBehaviour
 
         GameUIManager.Instance.HandlePausePanel(false);
     }
+
+    void OnDestroy()
+    {
+        UnpauseGame();
+    }
 }
